@@ -22,3 +22,7 @@ class Solution:
         
         # Return the values of the hashmap, which are lists of anagram groups.
         return list(hashmap.values())
+
+        # Time Complexity: O(N * L) where N is the number of strings and L is the average length of the strings.
+
+        
