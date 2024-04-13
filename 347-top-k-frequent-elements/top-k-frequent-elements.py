@@ -22,24 +22,24 @@ class Solution:
                 if(len(result)==k):
                     return result
 
-        # 0(k*N) -  max heap approach
-        count_map = Counter(nums)
+        # # 0(k*N) -  max heap approach
+        # count_map = Counter(nums)
         
-        # Use a heap to store the frequency and element. Negate the frequency
-        # since heapq is a min-heap, but we need a max-heap functionality.
-        # The heap will store elements as (-frequency, element).
-        heap = [(-c, n) for n, c in count_map.items()]
+        # # Use a heap to store the frequency and element. Negate the frequency
+        # # since heapq is a min-heap, but we need a max-heap functionality.
+        # # The heap will store elements as (-frequency, element).
+        # heap = [(-c, n) for n, c in count_map.items()]
         
-        # Transform the list into a heap in-place.
-        heapify(heap)
-        # heapq.heapify(heap)
+        # # Transform the list into a heap in-place.
+        # heapify(heap)
+        # # heapq.heapify(heap)
         
-        # Extract the top k elements (with the highest frequencies) from the heap.
-        # Since the frequencies are negated, we'll use heapq.heappop which
-        # will pop the smallest (in this case, the largest negative) elements first.
-        top_k = [heappop(heap)[1] for _ in range(k)]
+        # # Extract the top k elements (with the highest frequencies) from the heap.
+        # # Since the frequencies are negated, we'll use heapq.heappop which
+        # # will pop the smallest (in this case, the largest negative) elements first.
+        # top_k = [heappop(heap)[1] for _ in range(k)]
         
-        return top_k
+        # return top_k
 
         
         
