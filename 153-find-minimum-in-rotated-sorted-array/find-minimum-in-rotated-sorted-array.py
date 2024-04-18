@@ -10,4 +10,4 @@ class Solution:
             else:
                 r = m
         # After the loop, l will be the index of the minimum element
-        return nums[l]
+        return nums[r]
