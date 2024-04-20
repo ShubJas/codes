@@ -8,8 +8,6 @@ class Solution:
     def __init__(self):
         self.arr = []
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-
-    
         if root:
             self.arr.append(root.val)
             self.preorderTraversal(root.left)
