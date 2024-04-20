@@ -6,18 +6,58 @@
 #         self.right = right
 class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
-        if not root: 
+
+        if not root:
             return 0
-        self.minDepth=float('inf')
 
-        self.dfs(root,0)
+        minleft = self.minDepth(root.left)
+        minright = self.minDepth(root.right)
 
-        return self.minDepth
-    def dfs(self,node,curr_depth):
-        if not node :
-            return
+        if not root.left and not root.right:
+            return 1
+        
+        if not root.left:
+            return 1+ minright
+        
+        if not root.right:
+            return 1 + minleft
+        
 
-        if not node.left and not node.right:
-            self.minDepth=min(self.minDepth,curr_depth +1)
-        self.dfs(node.left,curr_depth+1)
-        self.dfs(node.right,curr_depth+1)    
+        return 1 + min(minleft , minright)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution(object):
+    def minDepth(self, root):
+        # Base case...
+        # If the subtree is empty i.e. root is NULL, return depth as 0...
+        if root is None:  return 0
+        # Initialize the depth of two subtrees...
+        leftDepth = self.minDepth(root.left)
+        rightDepth = self.minDepth(root.right)
+        # If the both subtrees are empty...
+        if root.left is None and root.right is None:
+            return 1
+        # If the left subtree is empty, return the depth of right subtree after adding 1 to it...
+        if root.left is None:
+            return 1 + rightDepth
+        # If the right subtree is empty, return the depth of left subtree after adding 1 to it...
+        if root.right is None:
+            return 1 + leftDepth
+        # When the two child function return its depth...
+        # Pick the minimum out of these two subtrees and return this value after adding 1 to it...
+        return min(leftDepth, rightDepth) + 1;    # Adding 1 is the current node which is the parent of the two subtrees...
