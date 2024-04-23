@@ -5,7 +5,7 @@ class Solution:
         def feasible(speed) -> bool:
             hours = 0
             for p in piles:
-                hours+= math.ceil(p/speed)
+                hours+= (p-1)//speed + 1
             if hours > h:
                  return False
             return True
