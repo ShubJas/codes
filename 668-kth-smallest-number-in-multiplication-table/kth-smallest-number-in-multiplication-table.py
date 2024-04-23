@@ -1,7 +1,8 @@
 class Solution:
     def findKthNumber(self, m: int, n: int, k: int) -> int:
 
-        
+        if m == 1 or n == 1:
+            return k
         def issmallerthan(num) -> bool:
             
             count = 0
