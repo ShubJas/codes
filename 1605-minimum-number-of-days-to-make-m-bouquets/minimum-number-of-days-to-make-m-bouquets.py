@@ -18,7 +18,7 @@ class Solution:
             return -1
                     
         
-        l = 1
+        l = min(bloomDay)
         r = max(bloomDay)
 
         while(l<r):
