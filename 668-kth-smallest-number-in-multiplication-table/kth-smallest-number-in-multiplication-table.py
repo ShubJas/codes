@@ -1,13 +1,17 @@
 class Solution:
     def findKthNumber(self, m: int, n: int, k: int) -> int:
 
-        if m == 1 or n == 1:
-            return k
+
         def issmallerthan(num) -> bool:
             
             count = 0
             for div in range(1,m+1):
-                count += min( num//div , n)
+                n1 = num//div
+                if n1 > n:
+                    count += n
+                else:
+                    count+= n1
+                # count += min( num//div , n)
                 if count ==0:
                     break
 
