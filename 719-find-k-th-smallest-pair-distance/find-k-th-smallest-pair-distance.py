@@ -5,7 +5,7 @@ class Solution:
 
         def issmaller(dist):
             count = i = j = 0
-            while i<n or j<n:
+            while i<n:
 
                 while j<n and nums[j]-nums[i] <= dist:
                     j+=1
