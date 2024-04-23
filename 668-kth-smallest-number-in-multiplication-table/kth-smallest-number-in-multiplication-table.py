@@ -6,11 +6,10 @@ class Solution:
             
             count = 0
             for div in range(1,m+1):
-                n1 = num//div
-                if n1 > n:
+                if num//div > n:
                     count += n
                 else:
-                    count+= n1
+                    count+= num//div
                 # count += min( num//div , n)
                 if count ==0:
                     break
