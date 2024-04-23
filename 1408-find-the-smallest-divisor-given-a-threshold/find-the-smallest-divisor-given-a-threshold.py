@@ -4,12 +4,12 @@ class Solution:
 
         def feasible(div):
 
-            total =0
-            for n in nums:
-                total += (n-1)//div + 1
-            return total <= threshold
+            # total =0
+            # for n in nums:
+            #     total += (n-1)//div + 1
+            # return total <= threshold
 
-            # return sum([(n-1)//div + 1 for n in nums]) <= threshold
+            return sum([(n-1)//div + 1 for n in nums]) <= threshold
 
         l = 1
         r = max(nums)
