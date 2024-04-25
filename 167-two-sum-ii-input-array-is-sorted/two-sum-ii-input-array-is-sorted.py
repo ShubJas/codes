@@ -7,13 +7,14 @@ class Solution:
 
         while(l<r):
 
-            if numbers[l]+ numbers[r] == target:
-                return [l+1,r+1]
+            if numbers[l]+ numbers[r] < target:
+                l = l+1
+                
 
             elif numbers[l]+ numbers[r] > target:
                 r = r-1
             else:
-                l += 1
+                return [l+1,r+1]
 
 
         # for l in range(len(numbers) - 1):
