@@ -1,9 +1,8 @@
 class Solution:
     def longestSemiRepetitiveSubstring(self, s: str) -> int:
-        longest = 0
+        longest = 1
         l = 0
-        if(len(s))<2:
-            return len(s)
+
         for l in range(len(s)-1):
             r = l
             countrep = 0
