@@ -1,49 +1,92 @@
 class Solution:
     def fourSum(self, nums, target):
         
-        nums.sort()
         result = []
-        for l in range(len(nums)-3):
+
+        remember = []
+
+        def ksum(k,start, target):
+            if k!=2:
+                for i in range(start,len(nums)-k+1):
+
+                    if i>start and nums[i] ==nums[i-1]:
+                        continue
+                    
+                    remember.append(nums[i])
+
+                    ksum(k-1, i+1,target-nums[i])
+
+                    remember.pop()
+                return
+            l = start
+            r = len(nums)-1
+
+            while l<r:
+                total = nums[l] + nums[r]
+
+                if total > target:
+                    r-=1
+                
+                elif total < target:
+                    l+=1
+                
+                else:
+                    result.append(remember+[nums[l],nums[r]])
+                    l+=1
+                    while l<r and nums[l] == nums[l-1]:
+                        l+=1
+        nums.sort()
+        ksum(4,0,target)
+        return result
+
+        
 
 
-            if l>0 and nums[l] == nums[l-1]:
-                continue
+
+
+        # nums.sort()
+        # result = []
+        # for l in range(len(nums)-3):
+
+
+        #     if l>0 and nums[l] == nums[l-1]:
+        #         continue
             
 
-            for m1 in range(l+1,len(nums)-2):
+        #     for m1 in range(l+1,len(nums)-2):
 
-                if m1> l+ 1 and nums[m1] == nums[m1-1]:
-                    continue
+        #         if m1> l+ 1 and nums[m1] == nums[m1-1]:
+        #             continue
                 
 
 
-                m2 = m1+1
-                r = len(nums)-1
+        #         m2 = m1+1
+        #         r = len(nums)-1
 
-                while m2 < r:
+        #         while m2 < r:
 
-                    total = nums[l] + nums[m1] + nums[m2] + nums[r]
+        #             total = nums[l] + nums[m1] + nums[m2] + nums[r]
 
-                    if total==target:
+        #             if total==target:
 
-                        result.append([nums[l],nums[m1],nums[m2],nums[r]])
+        #                 result.append([nums[l],nums[m1],nums[m2],nums[r]])
 
-                        m2+=1
-                        r-=1
+        #                 m2+=1
+        #                 r-=1
 
-                        while m2<r and nums[m2] == nums[m2-1]:
-                            m2+=1
+        #                 while m2<r and nums[m2] == nums[m2-1]:
+        #                     m2+=1
                         
-                        while m2<r and nums[r] == nums[r+1]:
-                            r-=1
+        #                 while m2<r and nums[r] == nums[r+1]:
+        #                     r-=1
                         
-                    elif total > target:
-                        r-=1
+        #             elif total > target:
+        #                 r-=1
                     
-                    else:
-                        m2+=1
+        #             else:
+        #                 m2+=1
         
-        return result
+        # return result
                             
         
         
