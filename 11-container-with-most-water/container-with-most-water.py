@@ -1,7 +1,7 @@
 class Solution:
     def maxArea(self, height: List[int]) -> int:
         maxarea=0
-        
+        hmax = max(height)
         l = 0
         r = len(height) - 1
 
@@ -14,6 +14,9 @@ class Solution:
             
             else:
                 r-=1
+
+            if hmax * (r-l) <= maxarea:
+                break
         return maxarea
 
         # maxarea = 0
