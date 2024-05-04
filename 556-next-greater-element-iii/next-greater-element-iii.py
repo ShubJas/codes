@@ -1,27 +1,29 @@
 class Solution:
     def nextGreaterElement(self, n: int) -> int:
-        nums = list(map(int, str(n)))
-        i = len(nums) - 2
+        nums = [int(i) for i in str(n)]
+        piv = len(nums)-2
 
-        # Find the first decreasing element from the end
-        while i >= 0 and nums[i] >= nums[i + 1]:
-            i -= 1
-        if i == -1:
+        while piv >=0 and nums[piv] >=nums[piv+1]:
+            piv-=1
+        
+        if piv == -1:
             return -1
 
-        # Find the element just larger than nums[i] to swap with
-        j = len(nums) - 1
-        while nums[j] <= nums[i]:
-            j -= 1
+        if piv>=0:
+            
+            j = len(nums) -1
 
-        # Swap
-        nums[i], nums[j] = nums[j], nums[i]
+            while nums[piv] >= nums[j]:
+                j-=1
+            
 
-        # Reverse the sequence after the pivot
-        nums[i + 1:] = reversed(nums[i + 1:])
+            nums[piv] , nums[j] = nums[j] , nums[piv]
 
-        # Convert back to integer
-        result = int(''.join(map(str, nums)))
+            nums[piv+1:] = nums[piv+1:][::-1]
 
-        # If specific bounds are given, apply them
-        return result if result < 2**31 else -1
+            result = int("".join(map(str,nums)))
+
+            return result if result < 2**31 else -1
+        
+
+        
