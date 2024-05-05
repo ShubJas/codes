@@ -3,42 +3,22 @@ class Solution:
         rows = len(box)
         cols = len(box[0])
         
-        # # Move stones to the right
-        # for r in range(rows):
-        #     boundary = cols  # Reset boundary to the end of each row initially
-        #     for c in reversed(range(cols)):  # Start from the rightmost column
-        #         if box[r][c] == '*':
-        #             boundary = c  # Reset boundary when hitting an obstacle
-        #         elif box[r][c] == '#':
-        #             box[r][c] = '.'  # Clear the current stone position
-        #             boundary -= 1  # Move boundary left
-        #             box[r][boundary] = '#'  # Place the stone at the new boundary
-
-        # # Rotate the box to result
-        # result = [['' for _ in range(rows)] for _ in range(cols)]
-        # for r in range(rows):
-        #     for c in range(cols):
-        #         result[c][rows - r - 1] = box[r][c]
-
-        # return result
-
+        # Apply gravity using two pointers
         for r in range(rows):
-            boundary =cols
-            for c in range(cols-1,-1,-1):
-                if box[r][c] == "*":
-                    boundary = c
-                elif box[r][c] == "#":
-                    box[r][c] = "."
-                    boundary-=1
-                    box[r][boundary] = "#"
-        
-        result = [["" for _ in range(rows)] for _ in range(cols)]
+            write = cols - 1  # Start the write pointer at the end of the row
+            for read in reversed(range(cols)):  # Read from right to left
+                if box[r][read] == '*':
+                    write = read - 1  # Reset write position at the left of the obstacle
+                elif box[r][read] == '#':
+                    box[r][write] = '#'  # Move stone to the new position
+                    if write != read:
+                        box[r][read] = '.'  # Clear the original stone position
+                    write -= 1  # Move the write pointer to the next available spot
 
+        # Rotate the box to result (90 degrees clockwise)
+        result = [['' for _ in range(rows)] for _ in range(cols)]
         for r in range(rows):
             for c in range(cols):
-                result[c][rows-1 -r] = box[r][c]
-        
+                result[c][rows - r - 1] = box[r][c]
+
         return result
-
-
-
