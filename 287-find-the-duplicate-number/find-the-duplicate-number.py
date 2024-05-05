@@ -1,10 +1,10 @@
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
         
-        hashset = {}
+        hashset = defaultdict(int)
 
         for val in nums:
-            hashset[val] = hashset.get(val,0) + 1
+            hashset[val]+= 1
         
         for val ,  count in hashset.items():
             if count >1:
