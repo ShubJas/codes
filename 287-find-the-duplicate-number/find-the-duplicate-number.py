@@ -1,14 +1,45 @@
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
-        
-        hashset = defaultdict(int)
+        slow = fast = 0
 
-        for val in nums:
-            hashset[val]+= 1
+        # First phase: finding the intersection point in the cycle
+        while True:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+            if slow == fast:
+                break
+
+        # Second phase: find the entrance to the cycle
+        slow = 0  # reset slow to the start
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[fast]
+
+        return slow  # slow is the duplicate number
+
+
+
         
-        for val ,  count in hashset.items():
-            if count >1:
-                return val
+
+            
+
+
+
+
+
+
+
+
+
+
+        # hashset = {}
+
+        # for val in nums:
+        #     hashset[val] = hashset.get(val,0) + 1
+        
+        # for val ,  count in hashset.items:
+        #     if count >1:
+        #         return val
         
         
         
