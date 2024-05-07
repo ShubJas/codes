@@ -1,17 +1,17 @@
 class Solution:
     def minimumCardPickup(self, cards: List[int]) -> int:
-        
-        value_index = {}
-        min_count  = -1
+        card_index = {}
+        min_num = -1
         for i in range(len(cards)):
             card = cards[i]
-            if card in value_index:
-                if min_count == -1:
-                    min_count = i - value_index[card] + 1
+            if card in card_index:
+                if min_num == -1:
+                    min_num = i - card_index[card] + 1
                 else:
-                    min_count = min(min_count ,  i - value_index[card] + 1)
-            value_index[card] = i
-        return min_count
+                    min_num = min(min_num, i - card_index[card] + 1)
+            card_index[card] = i
+
+        return min_num
         
         
         
