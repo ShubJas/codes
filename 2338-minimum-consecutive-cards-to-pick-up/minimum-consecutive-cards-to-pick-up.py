@@ -16,7 +16,7 @@ class Solution:
                 remove = cards[l]
                 hashset[remove] -=1
                 l+=1
-        return min_count if min_count < float("inf") else -1
+        return min_count if min_count != float("inf") else -1
 
 
         
