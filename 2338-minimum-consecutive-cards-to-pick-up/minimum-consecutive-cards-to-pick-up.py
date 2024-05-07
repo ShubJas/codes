@@ -1,6 +1,6 @@
 class Solution:
     def minimumCardPickup(self, cards: List[int]) -> int:
-        min_count = len(cards) + 1
+        min_count = float("inf")
         hashset = defaultdict(int)
         l = 0
 
@@ -16,7 +16,7 @@ class Solution:
                 remove = cards[l]
                 hashset[remove] -=1
                 l+=1
-        return min_count if min_count < len(cards) + 1 else -1
+        return min_count if min_count < float("inf") else -1
 
 
         
