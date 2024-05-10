@@ -5,8 +5,8 @@ class Solution:
         total = 0
         happiness.sort(reverse=True)
         for i in range(k):
-
-            total += happiness[i] - i if happiness[i] - i > 0 else 0
+            curr = happiness[i] - i
+            total += curr if curr > 0 else 0
 
         return total
         
