@@ -18,12 +18,13 @@ class Solution:
             slow = slow.next
 
         
-        while rev and rev.val == slow.val:
-            slow = slow.next
+        while rev and slow:
+            if rev.val != slow.val:
+                return False
             rev = rev.next
+            slow = slow.next
         
-        return not rev
-
+        return True
 
 
 
