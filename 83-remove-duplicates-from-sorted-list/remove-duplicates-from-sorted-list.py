@@ -14,9 +14,7 @@ class Solution:
         while ptr and ptr.next:
 
             if ptr.val == ptr.next.val:
-
-                while ptr.next and ptr.val == ptr.next.val:
-                    ptr.next = ptr.next.next
+                ptr.next = ptr.next.next
             
             else:
                 ptr = ptr.next
