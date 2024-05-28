@@ -10,11 +10,10 @@ class Solution:
         #     return head
         
         fast = head
-        
-
+        slow = head
         while fast and fast.next:
-            head = head.next
+            slow = slow.next
             fast = fast.next.next
         
-        return head
+        return slow
         
