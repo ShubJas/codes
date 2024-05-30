@@ -16,19 +16,12 @@ class Solution:
         curr = head
         for _ in range(1,count-k+1):
             curr = curr.next
-        print(curr.val)
         val2 = curr.val
         curr.val = val1
         curr = head
         for _ in range(k-1):
             curr = curr.next
         curr.val  =val2
-        
-        
-
-
-
-
         return head
         
 
