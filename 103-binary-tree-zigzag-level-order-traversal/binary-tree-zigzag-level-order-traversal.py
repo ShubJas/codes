@@ -20,7 +20,7 @@ class Solution:
                     q.append(curr.left)
                     q.append(curr.right)
             if rev % 2 == 0:
-                temp = temp[::-1]
+                temp.reverse()
             rev+=1
             if temp:
                 result.append(temp)
