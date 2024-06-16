@@ -22,8 +22,8 @@ class Solution:
             
             if temp:
                 result.append(temp)
-        
-        return result[::-1]
+        result.reverse()
+        return result
     
 
         
