@@ -15,23 +15,27 @@ class Solution:
 
         while q:
 
-            curr, curr_depth = q.popleft()
-
+            curr , curr_depth = q.popleft()
 
             if not curr:
                 continue
-            
-            if not curr.right and not curr.left:
+
+            if not curr.left and not curr.right:
                 return curr_depth
             
-
-            q.append([curr.left,curr_depth + 1])
-            q.append([curr.right,curr_depth + 1])
+            
+            
+            q.append((curr.left,curr_depth + 1))
+            q.append((curr.right,curr_depth + 1))
         
-
         return 0
 
+            
 
+
+
+
+        
 
 
 
