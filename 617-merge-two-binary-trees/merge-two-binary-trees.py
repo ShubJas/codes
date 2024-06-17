@@ -16,9 +16,9 @@ class Solution:
             return r1
         
 
-        new = TreeNode(r1.val+r2.val)
-        new.left = self.mergeTrees(r1.left,r2.left)
-        new.right = self.mergeTrees(r1.right,r2.right)
+        new = TreeNode(r1.val+r2.val,self.mergeTrees(r1.left,r2.left),self.mergeTrees(r1.right,r2.right))
+        # new.left = self.mergeTrees(r1.left,r2.left)
+        # new.right = self.mergeTrees(r1.right,r2.right)
 
 
         return new
