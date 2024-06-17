@@ -15,7 +15,7 @@ class Solution:
         if not r2:
             return r1
         
-        if not r1 and r2:
+        if not r1 and not r2:
             return r1
 
         new = TreeNode(r1.val+r2.val,self.mergeTrees(r1.left,r2.left),self.mergeTrees(r1.right,r2.right))
