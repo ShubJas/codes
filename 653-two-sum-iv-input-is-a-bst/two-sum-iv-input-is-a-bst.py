@@ -9,37 +9,40 @@ class Solution:
         self.num  =set()
     def findTarget(self, root: Optional[TreeNode], k: int) -> bool: 
     
-        # if not root:
-        #     return False
-        # ai = k - root.val
-        # if ai in self.num:
-        #     return True
-        
-        # else:
-        #     self.num.add(root.val)
-        
-        # return self.findTarget(root.left,k) or self.findTarget(root.right,k)
-        
         if not root:
             return False
+        ai = k - root.val
+        if ai in self.num:
+            return True
+        
+        else:
+            self.num.add(root.val)
+        
+        return self.findTarget(root.left,k) or self.findTarget(root.right,k)
         
 
-        q = collections.deque([root])
 
-        while q:
+        # # BSF
+        # if not root:
+        #     return False
+        
 
-            curr = q.popleft()
+        # q = collections.deque([root])
 
-            if not curr:
-                continue
+        # while q:
+
+        #     curr = q.popleft()
+
+        #     if not curr:
+        #         continue
             
-            ai  = k - curr.val
-            if ai in self.num:
-                return True
-            else:
-                self.num.add(curr.val)
+        #     ai  = k - curr.val
+        #     if ai in self.num:
+        #         return True
+        #     else:
+        #         self.num.add(curr.val)
 
-            q.append(curr.left)
-            q.append(curr.right)
+        #     q.append(curr.left)
+        #     q.append(curr.right)
         
-        return False
+        # return False
