@@ -13,9 +13,11 @@ class Solution:
 
     
     def depth(self,root):
+        if not root:
+            return 0
 
-        left_depth = self.depth(root.left) if root.left else 0
-        right_depth = self.depth(root.right) if root.right else 0
+        left_depth = self.depth(root.left) 
+        right_depth = self.depth(root.right) 
 
         self.maxdia = max(self.maxdia,left_depth+ right_depth)
 
