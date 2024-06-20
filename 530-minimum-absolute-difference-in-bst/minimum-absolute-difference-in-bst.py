@@ -7,25 +7,18 @@
 class Solution:
     def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
         
-
-        arr = []
-        min_diff = 10**5
-
-        def dfs_inorder(root):
-
+        list=[]
+        def dfs_in_order(root):
             if not root:
                 return 
-            
-            dfs_inorder(root.left)
-            arr.append(root.val)
-            dfs_inorder(root.right)
-        
-        dfs_inorder(root)
-
-        for i in range(len(arr)-1):
-            min_diff =min(min_diff,arr[i+1]-arr[i])
-        
-        return min_diff
+            dfs_in_order(root.left)
+            list.append(root.val)
+            dfs_in_order(root.right)
+        dfs_in_order(root)
+        min_ans=float("inf")
+        for n in range(1,len(list)):
+            min_ans=min(min_ans,(list[n]-list[n-1]))
+        return min_ans
 
 
         # stack =[]
