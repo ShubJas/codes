@@ -9,7 +9,7 @@ class Solution:
 
 
         if not root:
-            return 
+            return root
 
         if root.val > high:
             return self.trimBST(root.left,low,high)
