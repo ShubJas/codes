@@ -4,22 +4,24 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         
-        def dfs(root,num):
-
+        def dfs(root, num):
             if not root:
-                return 0
+                return 0  # If the current node is None, return 0
             
-            num = num * 10 + root.val
-
+            num = num * 10 + root.val  # Update the current number
+            
             if not root.left and not root.right:
-                return num
+                return num  # If it's a leaf node, return the current number
             
-            return dfs(root.left,num) + dfs(root.right,num)
+            # Recursively calculate the sum for left and right subtrees and return their sum
+            return dfs(root.left, num) + dfs(root.right, num)
         
-        return dfs(root,0)
+        return dfs(root, 0)  # Initialize the DFS with the root and an initial number 0
+
 
 
 
