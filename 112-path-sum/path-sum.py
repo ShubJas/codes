@@ -8,19 +8,20 @@ class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
 
 
-        cur_sum = 0
-
-        def dfs(root,cur_sum):
+        def inorder_dfs(root,curr_sum):
 
             if not root:
                 return False
-            cur_sum += root.val
+            
+            curr_sum += root.val
+
             if not root.left and not root.right:
-                return cur_sum == targetSum
-                
-            return dfs(root.left,cur_sum) or dfs(root.right,cur_sum)
+                return curr_sum == targetSum
+            
+            return inorder_dfs(root.left,curr_sum)  or inorder_dfs(root.right, curr_sum)
         
-        return dfs(root,cur_sum)
+
+        return inorder_dfs(root,0)
 
 
         
