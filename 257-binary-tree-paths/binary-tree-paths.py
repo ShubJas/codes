@@ -17,14 +17,15 @@ class Solution:
             if not root:
                 return 
             
-            path += str(root.val)
+            path.append(str(root.val))
 
             if not root.left and not root.right:
-                result.append(path)
+                result.append('->'.join(path))
             else:
-                dfs(root.left,path+'->',result)
-                dfs(root.right,path+'->',result)
+                dfs(root.left,path,result)
+                dfs(root.right,path,result)
+            path.pop()
         
 
-        dfs(root,'',result)
+        dfs(root,[],result)
         return result
