@@ -4,20 +4,24 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
-
+        # Base case: if the nums list is empty, return None
         if not nums:
-            return
-        mid  = len(nums) // 2
+            return None
+        
+        # Find the middle index
+        mid = len(nums) // 2
+        
+        # The middle element of the sorted array becomes the root of the BST
         root = TreeNode(nums[mid])
-
-        if len(nums) ==  1:
-            return root
         
+        # Recursively build the left subtree using the left half of the array
         root.left = self.sortedArrayToBST(nums[:mid])
-        root.right = self.sortedArrayToBST(nums[mid+1:])
-
-        return root
-
         
+        # Recursively build the right subtree using the right half of the array
+        root.right = self.sortedArrayToBST(nums[mid + 1:])
+        
+        # Return the constructed BST
+        return root
