@@ -7,24 +7,28 @@
 
 class Solution:
     def bstFromPreorder(self, preorder: List[int]) -> Optional[TreeNode]:
-        # Base case: if preorder list is empty, return None
-        if not preorder:
-            return None
-
-        # The first element in preorder is the root of the BST
-        root = TreeNode(preorder[0])
+        # Index to keep track of the current position in the preorder list
+        self.index = 0
         
-        # If there is only one element, return it as the root
-        if len(preorder) == 1:
+        def buildBST(preorder, lower, upper):
+            # If all elements are processed or the current element is out of bounds, return None
+            if self.index == len(preorder) or not (lower < preorder[self.index] < upper):
+                return None
+            
+            # Get the current element and move the index forward
+            val = preorder[self.index]
+            self.index += 1
+            
+            # Create a new TreeNode with the current value
+            root = TreeNode(val)
+            
+            # Recursively build the left subtree with updated upper bound
+            root.left = buildBST(preorder, lower, val)
+            
+            # Recursively build the right subtree with updated lower bound
+            root.right = buildBST(preorder, val, upper)
+            
             return root
-
-        # Find the boundary between left and right subtrees
-        i = 1
-        while i < len(preorder) and preorder[i] < preorder[0]:
-            i += 1
-
-        # Recursively construct the left and right subtrees
-        root.left = self.bstFromPreorder(preorder[1:i])
-        root.right = self.bstFromPreorder(preorder[i:])
         
-        return root
+        # Start the recursive construction with initial boundaries
+        return buildBST(preorder, float('-inf'), float('inf'))
