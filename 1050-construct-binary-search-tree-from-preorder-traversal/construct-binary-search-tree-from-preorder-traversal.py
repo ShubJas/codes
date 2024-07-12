@@ -18,7 +18,7 @@ class Solution:
         if len(preorder) == 1:
             return root
 
-        # Find the boundary between left and right subtrees
+        # Find the boundary between left and right subtrees using BST prop
         i = 1
         while i < len(preorder) and preorder[i] < preorder[0]:
             i += 1
