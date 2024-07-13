@@ -7,16 +7,21 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        # Initialize the current node as the root
         curr = root
 
+        # Loop until we find the LCA
         while curr:
-
+            # If both p and q are greater than the current node's value, move to the right subtree
             if curr.val < p.val and curr.val < q.val:
                 curr = curr.right
+            # If both p and q are less than the current node's value, move to the left subtree
             elif curr.val > p.val and curr.val > q.val:
                 curr = curr.left
+            # If the current node's value is between p and q (inclusive), we have found the LCA
             else:
                 return curr
+
 
 
 
