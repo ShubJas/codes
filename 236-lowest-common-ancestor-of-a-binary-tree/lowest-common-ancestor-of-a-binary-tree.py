@@ -7,19 +7,23 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        
+        # Base case: if root is None, return None
         if not root:
-            return
+            return None
         
-
+        # If the current node is p or q, return the current node
         if root == p or root == q:
             return root
-
-        left = self.lowestCommonAncestor(root.left,p,q)
-        right = self.lowestCommonAncestor(root.right,p,q)
-
-
+        
+        # Recursively search in the left and right subtrees
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+        
+        # If both left and right are non-null, it means p and q are found in separate subtrees
+        # Hence, the current node is the LCA
         if left and right:
             return root
         
+        # If only one of the left or right is non-null, return the non-null value
+        # It means both p and q are found in the same subtree
         return left if left else right
