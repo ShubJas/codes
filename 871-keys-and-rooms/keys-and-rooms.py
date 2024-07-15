@@ -16,10 +16,10 @@ class Solution:
 
         self.dfs(0,rooms)
 
-        for x in self.visited:
-            if not x:
-                return False
+        # for x in self.visited:
+        #     if not x:
+        #         return False
         
-        return True
+        return all(self.visited)
 
         
