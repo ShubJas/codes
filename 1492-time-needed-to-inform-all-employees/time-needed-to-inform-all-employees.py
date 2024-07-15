@@ -6,7 +6,7 @@ class Solution:
         
         # If the current employee has no subordinates (leaf node)
         if idx not in manager_emp:
-            # memo[idx] = 0  # Base case: no time needed to inform subordinates
+            memo[idx] = 0  # Base case: no time needed to inform subordinates
             return 0
         
         max_time = 0
