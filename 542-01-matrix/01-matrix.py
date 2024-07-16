@@ -20,7 +20,7 @@ class Solution:
         while q:
             step += 1
             qlen = len(q)  # Get the current level size
-            for _ in range(qlen):
+            for _ in range(qlen): # for these many pops only step was taken
                 i, j = q.popleft()
                 # Check boundaries and if the cell is unvisited and has value 1
                 if 0 <= i < self.rows and 0 <= j < self.cols and not visited[i][j] and mat[i][j] != 0:
