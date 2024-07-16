@@ -19,12 +19,6 @@ class Solution:
         return True
 
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
-        """
-        Find all eventual safe nodes in the graph.
-        
-        :param graph: Adjacency list representing the graph
-        :return: List of all safe nodes sorted in ascending order
-        """
         
         result = []  # List to store the safe nodes
         n = len(graph)  # Number of nodes in the graph
