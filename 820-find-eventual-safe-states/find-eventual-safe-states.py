@@ -1,15 +1,6 @@
 # Cycle detection using DFS and dp
 class Solution:
     def dfs(self, i, graph, dp):
-        """
-        Perform a depth-first search to detect cycles and determine safe nodes.
-        
-        :param i: Current node being processed
-        :param graph: Adjacency list representing the graph
-        :param dp: List to store the state of each node (-1: being processed, 1: safe, 0: unknown)
-        :return: True if the node is safe, False otherwise
-        """
-
         # If the node has been processed before, return its state (True if safe, False otherwise)
         if dp[i] != 0:
             return dp[i] == 1
