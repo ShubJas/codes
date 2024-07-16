@@ -4,13 +4,13 @@ class Solution:
         if n==1:
             return n
 
-        inco = defaultdict(set)
-        outgo = defaultdict(set)
+        inco = [0] * (n+1)
+        outgo = [0] * (n+1)
         for x in trust:
-            inco[x[1]].add(x[0])
-            outgo[x[0]].add(x[1])
-        for j,val in inco.items():
-            if len(val) == n-1 and len(outgo[j]) == 0:
+            inco[x[1]] +=1
+            outgo[x[0]] +=1
+        for j,val in enumerate(inco):
+            if val == n-1 and outgo[j] == 0:
                 return j
 
         return -1
