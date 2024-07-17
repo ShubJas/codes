@@ -5,7 +5,7 @@ class Solution:
         n = len(graph)
         color = [-1] * n  # Initialize color array with -1 (uncolored state for all nodes)
 
-        for i in range(n):
+        for i in range(n): # there may be unconnected components
             if color[i] != -1:
                 continue  # If the node is already colored, skip to the next node
 
