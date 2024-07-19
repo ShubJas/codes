@@ -1,3 +1,4 @@
+# KHAN/BFS
 class Solution:
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
         # Initialize the in-degree array and the reversed graph
@@ -32,3 +33,37 @@ class Solution:
         
         # Return the sorted list of safe nodes
         return sorted(safe_nodes)
+
+# # DFS
+# class Solution:
+#     def dfs(self,i,graph):
+
+#         if self.visited[i] != 0:
+#             return self.visited[i] == 1
+        
+#         self.visited[i] = -1
+
+#         for neighbor in graph[i]:
+#             if not self.dfs(neighbor,graph):
+#                 return False
+        
+#         self.visited[i] = 1
+#         return True
+
+#     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+#         # Initialize in-degree array and adjacency list
+#         self.visited = [0] * numCourses
+#         graph = defaultdict(list)
+
+#         # Build the graph 
+#         for course, pre in prerequisites:
+#             graph[pre].append(course)
+
+
+#         for i in range(numCourses):
+#             if self.visited[i] == 0:
+#                 if not self.dfs(i,graph):
+#                     return False
+
+#         return True
+        
