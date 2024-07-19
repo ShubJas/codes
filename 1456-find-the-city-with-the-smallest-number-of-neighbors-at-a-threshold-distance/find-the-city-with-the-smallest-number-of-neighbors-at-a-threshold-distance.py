@@ -1,3 +1,4 @@
+# Dijkstras
 class Solution:
     def dijkstras(self, s):
         # Initialize the priority queue with the starting node 's' and a distance of 0
