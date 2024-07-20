@@ -19,8 +19,8 @@ class Solution:
             if effort > efforts[x][y]:
                 continue
             
-            # if x == self.rows - 1 and y == self.cols - 1:
-            #     return effort
+            if x == self.rows - 1 and y == self.cols - 1:
+                return effort
             
             for dx , dy in directions:
                 nx = x + dx
