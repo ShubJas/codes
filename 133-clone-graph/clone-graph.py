@@ -13,6 +13,7 @@ class Solution:
 
         if not node:
             return None
+            
         # Dictionary to map original nodes to their clones
         old_new = {}
 
