@@ -10,6 +10,9 @@ from typing import Optional
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         
+
+        if not node:
+            return None
         # Dictionary to map original nodes to their clones
         old_new = {}
 
@@ -35,4 +38,4 @@ class Solution:
         
         # If the input node is None, return None
         # Otherwise, start the DFS from the input node
-        return dfs(node) if node else None
+        return dfs(node)
