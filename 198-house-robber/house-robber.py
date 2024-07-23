@@ -9,7 +9,6 @@ class Solution:
         elif n == 1:
             return nums[0]
 
-        dp = [-1] * (n + 1)
         p2 = nums[0]
         p1 = max(nums[0],nums[1])
 
