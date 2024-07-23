@@ -28,7 +28,7 @@ class Solution:
 
         # Helper function to calculate the maximum money that can be robbed from range start to end-1.
         def calc(start, end):
-            if end == start:
+            if end == start: #only one house
                 return nums[start]
             p2 = nums[start]
             p1 = max(nums[start], nums[start + 1])
