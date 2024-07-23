@@ -28,11 +28,11 @@ class Solution:
 
         # Helper function to calculate the maximum money that can be robbed from range start to end-1.
         def calc(start, end):
-            if end - start <= 1:
+            if end == start:
                 return nums[start]
             p2 = nums[start]
             p1 = max(nums[start], nums[start + 1])
-            for i in range(start + 2, end):
+            for i in range(start + 2, end + 1):
                 pick = nums[i] + p2
                 not_pick = p1
                 curr = max(pick, not_pick)
@@ -42,9 +42,9 @@ class Solution:
             return p1
 
         # Calculate the maximum amount excluding the last house.
-        max1 = calc(0, n - 1)
+        max1 = calc(0, n - 2)
         # Calculate the maximum amount excluding the first house.
-        max2 = calc(1, n)
+        max2 = calc(1, n - 1)
 
         # Return the maximum of the two results.
         return max(max1, max2)
