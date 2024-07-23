@@ -30,14 +30,16 @@ class Solution:
         def calc(start, end):
             if end - start <= 1:
                 return nums[start]
-            dp = [-1] * n
-            dp[start] = nums[start]
-            dp[start + 1] = max(nums[start], nums[start + 1])
+            p2 = nums[start]
+            p1 = max(nums[start], nums[start + 1])
             for i in range(start + 2, end):
-                pick = nums[i] + dp[i - 2]
-                not_pick = dp[i - 1]
-                dp[i] = max(pick, not_pick)
-            return dp[end - 1]
+                pick = nums[i] + p2
+                not_pick = p1
+                curr = max(pick, not_pick)
+
+                p2 = p1
+                p1 = curr
+            return p1
 
         # Calculate the maximum amount excluding the last house.
         max1 = calc(0, n - 1)
@@ -46,6 +48,55 @@ class Solution:
 
         # Return the maximum of the two results.
         return max(max1, max2)
+
+# class Solution:
+#     def rob(self, nums: List[int]) -> int:
+#         """
+#         This function calculates the maximum amount of money that can be robbed from a circular row of houses,
+#         where robbing two adjacent houses is not allowed.
+
+#         Approach:
+#         - Use dynamic programming to calculate the maximum money that can be robbed.
+#         - Split the problem into two subproblems:
+#           1. Calculate the maximum amount by excluding the last house.
+#           2. Calculate the maximum amount by excluding the first house.
+#         - The final result will be the maximum of these two subproblems.
+
+#         Args:
+#         - nums: A list of integers representing the amount of money in each house.
+
+#         Returns:
+#         - The maximum amount of money that can be robbed without alerting the police.
+#         """
+#         n = len(nums)
+
+#         # Base case: If there are no houses, return 0.
+#         if n == 0:
+#             return 0
+#         # Base case: If there is only one house, return the amount of money in that house.
+#         if n == 1:
+#             return nums[0]
+
+#         # Helper function to calculate the maximum money that can be robbed from range start to end-1.
+#         def calc(start, end):
+#             if end - start <= 1:
+#                 return nums[start]
+#             dp = [-1] * n
+#             dp[start] = nums[start]
+#             dp[start + 1] = max(nums[start], nums[start + 1])
+#             for i in range(start + 2, end):
+#                 pick = nums[i] + dp[i - 2]
+#                 not_pick = dp[i - 1]
+#                 dp[i] = max(pick, not_pick)
+#             return dp[end - 1]
+
+#         # Calculate the maximum amount excluding the last house.
+#         max1 = calc(0, n - 1)
+#         # Calculate the maximum amount excluding the first house.
+#         max2 = calc(1, n)
+
+#         # Return the maximum of the two results.
+#         return max(max1, max2)
 
 
 # class Solution:
