@@ -17,7 +17,7 @@ class Solution:
             curr = [-1] * m
             for j in range(m):
                 if i == 0 and j == 0:
-                    curr[j] = 1
+                    curr[0] = 1
                     continue
                 up = left = 0
                 if i>0 and obstacleGrid[i-1][j] != 1:
