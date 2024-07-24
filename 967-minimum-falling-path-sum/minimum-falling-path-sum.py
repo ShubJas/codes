@@ -4,27 +4,28 @@ class Solution:
         n = len(matrix)
         m = len(matrix[0])
 
-        dp = [[-1] * m for _ in range(n)]
+        prev = [-1] * m 
 
         for j in range(m):
-            dp[0][j] = matrix[0][j]
+            prev[j] = matrix[0][j]
 
 
         for i in range(1,n):
+            curr = [-1] * m 
             for j in range(m):
 
                 up_left = up_right = float('inf')
-                up = dp[i-1][j]
+                up = prev[j]
                 if j> 0:
-                    up_left = dp[i-1][j-1]
+                    up_left = prev[j-1]
                 
                 if j < m-1:
-                    up_right = dp[i-1][j+1]
+                    up_right = prev[j+1]
                 
-                dp[i][j] = matrix[i][j] + min(up,up_left,up_right)
+                curr[j] = matrix[i][j] + min(up,up_left,up_right)
+            prev = curr
 
-
-        return min(dp[n-1])
+        return min(prev)
 
 
 # class Solution:
