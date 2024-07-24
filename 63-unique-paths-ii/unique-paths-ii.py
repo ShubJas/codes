@@ -10,25 +10,54 @@ class Solution:
 
         dp = [[-1] * m for _ in range(n)]
 
-        def calc(x,y):
+        dp[0][0] = 1
 
-            if x<0 or x>=n or y<0 or y>=m or obstacleGrid[x][y] == 1:
-                return 0
-            
-            if x == 0 and y==0:
-                return 1
-            
-            if dp[x][y] != -1:
-                return dp[x][y]
-            
-            up = calc(x-1,y)
-            left = calc(x,y-1)
-            
-            dp[x][y] = up + left
-            return dp[x][y] 
+        for i in range(n):
+            for j in range(m):
+                if i == 0 and j == 0:
+                    continue
+                up = left = 0
+                if i>0 and obstacleGrid[i-1][j] != 1:
+                    up = dp[i-1][j]
+                if j>0 and obstacleGrid[i][j-1] != 1:
+                    left = dp[i][j-1]
+                
+                dp[i][j] = left + up
         
-        return calc(n-1,m-1)
+        return dp[n-1][m-1]
 
+
+
+# class Solution:
+#     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        
+#         n = len(obstacleGrid)
+#         m = len(obstacleGrid[0])
+
+#         if obstacleGrid[n-1][m-1] == 1 or obstacleGrid[0][0] == 1:
+#             return 0
+
+
+#         dp = [[-1] * m for _ in range(n)]
+
+#         def calc(x,y):
+
+#             if x<0 or x>=n or y<0 or y>=m or obstacleGrid[x][y] == 1:
+#                 return 0
+            
+#             if x == 0 and y==0:
+#                 return 1
+            
+#             if dp[x][y] != -1:
+#                 return dp[x][y]
+            
+#             up = calc(x-1,y)
+#             left = calc(x,y-1)
+            
+#             dp[x][y] = up + left
+#             return dp[x][y] 
+        
+#         return calc(n-1,m-1)
 
 
 # class Solution:
