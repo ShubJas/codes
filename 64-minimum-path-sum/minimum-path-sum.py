@@ -4,24 +4,52 @@ class Solution:
         n = len(grid)
         m = len(grid[0])
 
-        dp = [[-1] * m for _ in range(n)]
+        prev = [-1] * m 
 
 
-        dp[0][0] = grid[0][0]
+        prev[0] = grid[0][0]
 
         for i in range(n):
+            curr = [-1] * m
             for j in range(m):
                 if i == 0 and j == 0:
+                    curr[j] = prev[j]
                     continue
                 up = left = float('inf') 
                 if i>0:
-                    up = dp[i-1][j]
+                    up = prev[j]
                 if j >0:
-                    left = dp[i][j-1]
-                dp[i][j] = grid[i][j] + min(up,left)
+                    left = curr[j-1]
+                curr[j] = grid[i][j] + min(up,left)
+            prev = curr
         
-        return dp[n-1][m-1]
+        return prev[m-1]
         
+
+# class Solution:
+#     def minPathSum(self, grid: List[List[int]]) -> int:
+
+#         n = len(grid)
+#         m = len(grid[0])
+
+#         dp = [[-1] * m for _ in range(n)]
+
+
+#         dp[0][0] = grid[0][0]
+
+#         for i in range(n):
+#             for j in range(m):
+#                 if i == 0 and j == 0:
+#                     continue
+#                 up = left = float('inf') 
+#                 if i>0:
+#                     up = dp[i-1][j]
+#                 if j >0:
+#                     left = dp[i][j-1]
+#                 dp[i][j] = grid[i][j] + min(up,left)
+        
+#         return dp[n-1][m-1]
+
 
 
 # class Solution:
