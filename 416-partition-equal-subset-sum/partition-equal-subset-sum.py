@@ -8,31 +8,66 @@ class Solution:
         n = len(nums)
         reach =  S//2
 
-        dp = [[None] * (reach+1) for _ in range(n)]
+        prev = [None] * (reach+1)
 
 
-        for i in range(n):
-            dp[i][0] = True
+        
+        prev[0] = True
         
         if nums[0] <= reach:
-            dp[0][nums[0]] = True
+            prev[nums[0]] = True
 
 
         for i in range(1,n):
-
+            curr = [None] * (reach+1)
+            curr[0] = True
             for target in range(1,reach+1):
 
                 pick = False
                 if nums[i] <= target:
-                    pick = dp[i-1][target-nums[i]]
+                    pick = prev[target-nums[i]]
                 
-                not_pick  = dp[i-1][target]
+                not_pick  = prev[target]
 
-                dp[i][target] = pick or not_pick
+                curr[target] = pick or not_pick
+            prev = curr
 
-        return dp[n-1][reach]
+        return prev[reach]
 
+
+# class Solution:
+#     def canPartition(self, nums: List[int]) -> bool:
+
+#         S = sum(nums)
+#         if S % 2 != 0:
+#             return False
+
+#         n = len(nums)
+#         reach =  S//2
+
+#         dp = [[None] * (reach+1) for _ in range(n)]
+
+
+#         for i in range(n):
+#             dp[i][0] = True
         
+#         if nums[0] <= reach:
+#             dp[0][nums[0]] = True
+
+
+#         for i in range(1,n):
+
+#             for target in range(1,reach+1):
+
+#                 pick = False
+#                 if nums[i] <= target:
+#                     pick = dp[i-1][target-nums[i]]
+                
+#                 not_pick  = dp[i-1][target]
+
+#                 dp[i][target] = pick or not_pick
+
+#         return dp[n-1][reach]
 
 # class Solution:
 #     def canPartition(self, nums: List[int]) -> bool:
