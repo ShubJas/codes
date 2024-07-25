@@ -2,7 +2,7 @@ class Solution:
     def canPartition(self, nums: List[int]) -> bool:
 
         S = sum(nums)
-        if S % 2 != 0:
+        if S & 1:
             return False
 
         n = len(nums)
