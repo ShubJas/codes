@@ -1,39 +1,22 @@
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
-
         S = sum(nums)
-        if S & 1:
+        if S % 2 != 0:  # if odd
             return False
 
         n = len(nums)
-        reach =  S//2
+        reach = S // 2
 
-        prev = [None] * (reach+1)
+        # Initialize a single array for the dp
+        dp = [False] * (reach + 1)
+        dp[0] = True  # Base case: A subset sum of 0 is always possible
 
+        for num in nums:
+            # Iterate backwards to prevent overwriting values we still need to use
+            for target in range(reach, num - 1, -1):
+                dp[target] = dp[target] or dp[target - num]
 
-        
-        prev[0] = True
-        
-        if nums[0] <= reach:
-            prev[nums[0]] = True
-
-
-        for i in range(1,n):
-            curr = [None] * (reach+1)
-            curr[0] = True
-            for target in range(1,reach+1):
-
-                pick = False
-                if nums[i] <= target:
-                    pick = prev[target-nums[i]]
-                
-                not_pick  = prev[target]
-
-                curr[target] = pick or not_pick
-            prev = curr
-
-        return prev[reach]
-
+        return dp[reach]
 
 # class Solution:
 #     def canPartition(self, nums: List[int]) -> bool:
