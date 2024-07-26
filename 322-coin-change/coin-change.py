@@ -1,31 +1,3 @@
-# class Solution:
-#     def coinChange(self, coins: List[int], amount: int) -> int:
-#         n = len(coins)
-
-#         prev = [-1] * (amount + 1) 
-
-
-#         for amnt in range(amount+1):
-#             if amnt % coins[0] == 0: 
-#                 prev[amnt] = amnt // coins[0]
-#             else:
-#                 prev[amnt] = float('inf')
-        
-#         for i in range(1,n):
-#             for amnt in range(amount+1):
-
-#                 take = float('inf')
-#                 if coins[i] <= amnt:
-#                     take = 1 + prev[amnt - coins[i]]
-
-#                 ntake = prev[amnt]
-
-#                 prev[amnt] = min(take, ntake)
-
-#         ans = prev[amount]
-#         return ans if ans != float('inf') else -1
-
-
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         n = len(coins)
@@ -40,20 +12,48 @@ class Solution:
                 prev[amnt] = float('inf')
         
         for i in range(1,n):
-            curr = [-1] * (amount + 1) 
             for amnt in range(amount+1):
 
                 take = float('inf')
                 if coins[i] <= amnt:
-                    take = 1 + curr[amnt - coins[i]]
+                    take = 1 + prev[amnt - coins[i]]
 
                 ntake = prev[amnt]
 
-                curr[amnt] = min(take, ntake)
-            prev = curr
+                prev[amnt] = min(take, ntake)
 
         ans = prev[amount]
         return ans if ans != float('inf') else -1
+
+
+# class Solution:
+#     def coinChange(self, coins: List[int], amount: int) -> int:
+#         n = len(coins)
+
+#         prev = [-1] * (amount + 1) 
+
+
+#         for amnt in range(amount+1):
+#             if amnt % coins[0] == 0: 
+#                 prev[amnt] = amnt // coins[0]
+#             else:
+#                 prev[amnt] = float('inf')
+        
+#         for i in range(1,n):
+#             curr = [-1] * (amount + 1) 
+#             for amnt in range(amount+1):
+
+#                 take = float('inf')
+#                 if coins[i] <= amnt:
+#                     take = 1 + curr[amnt - coins[i]]
+
+#                 ntake = prev[amnt]
+
+#                 curr[amnt] = min(take, ntake)
+#             prev = curr
+
+#         ans = prev[amount]
+#         return ans if ans != float('inf') else -1
 
 
 # class Solution:
