@@ -8,8 +8,12 @@ class Solution:
             if amount == 0:
                 return 0
             
-            if i < 0 or amount < 0:
-                return float('inf')
+            if i == 0:
+                if amount % coins[0] == 0:
+                    return  amount // coins[0]
+                else:
+                    return float('inf')
+            
             
             if dp[i][amount] != -1:
                 return dp[i][amount]
@@ -26,3 +30,30 @@ class Solution:
 
         ans = calc(n - 1, amount)
         return ans if ans != float('inf') else -1
+
+
+# class Solution:
+#     def coinChange(self, coins: List[int], amount: int) -> int:
+#         n = len(coins)
+
+#         def calc(i, amount):
+#             if amount == 0:
+#                 return 0
+            
+            # if i == 0:
+            #     if amount % coins[0] == 0:
+            #         return  amount // coins[0]
+            #     else:
+            #         return float('inf')
+            
+
+#             take = float('inf')
+#             if coins[i] <= amount:
+#                 take = 1 + calc(i, amount - coins[i])
+
+#             ntake = calc(i - 1, amount)
+
+#             return min(take, ntake)
+
+#         ans = calc(n - 1, amount)
+#         return ans if ans != float('inf') else -1
