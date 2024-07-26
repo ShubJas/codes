@@ -2,30 +2,57 @@ class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         n = len(coins)
 
-        dp = [[-1] * (amount + 1) for _ in range(n)]
+        prev = [-1] * (amount + 1) 
 
 
         for amnt in range(amount+1):
             if amnt % coins[0] == 0: 
-                dp[0][amnt] = amnt // coins[0]
+                prev[amnt] = amnt // coins[0]
             else:
-                dp[0][amnt] = float('inf')
+                prev[amnt] = float('inf')
         
         for i in range(1,n):
             for amnt in range(amount+1):
 
                 take = float('inf')
                 if coins[i] <= amnt:
-                    take = 1 + dp[i][amnt - coins[i]]
+                    take = 1 + prev[amnt - coins[i]]
 
-                ntake = dp[i - 1][amnt]
+                ntake = prev[amnt]
 
-                dp[i][amnt] = min(take, ntake)
+                prev[amnt] = min(take, ntake)
 
-        ans = dp[n - 1][amount]
+        ans = prev[amount]
         return ans if ans != float('inf') else -1
 
-    
+
+
+# class Solution:
+#     def coinChange(self, coins: List[int], amount: int) -> int:
+#         n = len(coins)
+
+#         dp = [[-1] * (amount + 1) for _ in range(n)]
+
+
+#         for amnt in range(amount+1):
+#             if amnt % coins[0] == 0: 
+#                 dp[0][amnt] = amnt // coins[0]
+#             else:
+#                 dp[0][amnt] = float('inf')
+        
+#         for i in range(1,n):
+#             for amnt in range(amount+1):
+
+#                 take = float('inf')
+#                 if coins[i] <= amnt:
+#                     take = 1 + dp[i][amnt - coins[i]]
+
+#                 ntake = dp[i - 1][amnt]
+
+#                 dp[i][amnt] = min(take, ntake)
+
+#         ans = dp[n - 1][amount]
+#         return ans if ans != float('inf') else -1
 
 
 # class Solution:
