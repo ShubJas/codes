@@ -22,8 +22,7 @@ class Solution:
 
                 prev[amnt] = min(take, ntake)
 
-        ans = prev[amount]
-        return ans if ans != float('inf') else -1
+        return prev[amount] if prev[amount] != float('inf') else -1
 
 
 # class Solution:
