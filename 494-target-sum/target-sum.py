@@ -28,9 +28,8 @@ class Solution:
             prev[nums[0]] = 1
 
         for i in range(1,n):
-            curr = [0] * (reach+1)
-            curr[0] = 1
-            for target in range(1,reach+1):
+
+            for target in range(reach,0,-1):
 
                 pick = 0
                 if nums[i] <=target:
@@ -38,14 +37,58 @@ class Solution:
                 
                 npick = prev[target]
 
-                curr[target] = pick + npick
-            prev = curr
+                prev[target] = pick + npick
         
         count_nonzeros = prev[reach]
 
         return count_nonzeros * pow(2,zero_count)
 
+# class Solution:
+#     def findTargetSumWays(self, nums: List[int], target: int) -> int:
 
+#         zero_count = nums.count(0)
+
+#         if zero_count == len(nums):
+
+#             if target == 0:
+#                 return pow(2,zero_count)
+#             else:
+#                 return 0
+
+#         nums = [ele for ele in nums if ele != 0]
+#         n = len(nums)
+#         S = sum(nums) 
+
+#         if (S - target) & 1 or S - target < 0:
+#             return 0
+#         reach  = (S- target) // 2
+        
+
+#         prev = [0] * (reach+1)
+
+
+#         prev[0] = 1
+
+#         if nums[0] <= reach:
+#             prev[nums[0]] = 1
+
+#         for i in range(1,n):
+#             curr = [0] * (reach+1)
+#             curr[0] = 1
+#             for target in range(1,reach+1):
+
+#                 pick = 0
+#                 if nums[i] <=target:
+#                     pick = prev[target-nums[i]]
+                
+#                 npick = prev[target]
+
+#                 curr[target] = pick + npick
+#             prev = curr
+        
+#         count_nonzeros = prev[reach]
+
+#         return count_nonzeros * pow(2,zero_count)
 
 # class Solution:
 #     def findTargetSumWays(self, nums: List[int], target: int) -> int:
