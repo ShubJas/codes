@@ -2,14 +2,14 @@ class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         n = len(coins)
 
-        dp = [[float('inf')] * (amount + 1) for _ in range(n)]
+        dp = [[-1] * (amount + 1) for _ in range(n)]
 
 
         for amnt in range(amount+1):
             if amnt % coins[0] == 0: 
                 dp[0][amnt] = amnt // coins[0]
-            # else:
-            #     dp[0][amnt] = float('inf')
+            else:
+                dp[0][amnt] = float('inf')
         
         for i in range(1,n):
             for amnt in range(amount+1):
