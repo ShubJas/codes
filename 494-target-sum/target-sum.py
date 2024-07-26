@@ -1,3 +1,4 @@
+# # Intuition -  S1 - S2 = target , S1 + S2 = S -->  S2 = (S- target) // 2
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
 
