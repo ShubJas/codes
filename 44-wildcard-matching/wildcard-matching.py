@@ -18,6 +18,7 @@ class Solution:
                     break
                 dp[0][i2] = True
     
+    
         dp[0][0] = True
 
 
@@ -26,18 +27,20 @@ class Solution:
             for i2 in range(1,n2+1):
 
                 if p[i2-1] == '?':
-                    dp[i1][i2] = dp[i1-1][i2-1]
+                    result = dp[i1-1][i2-1]
 
                 elif p[i2-1] == '*':
                     use = dp[i1-1][i2]
                     not_use = dp[i1][i2-1]
-                    dp[i1][i2] = use or not_use
+                    result = use or not_use
                 
                 else:
                     if s[i1-1] == p[i2-1]:
-                        dp[i1][i2] = dp[i1-1][i2-1]
+                        result = dp[i1-1][i2-1]
                     else:
-                        dp[i1][i2] = False
+                        result = False
+
+                dp[i1][i2] = result
 
 
 
