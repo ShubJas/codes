@@ -15,19 +15,46 @@ class Solution:
         prev[0] = 1
 
         for i1 in range(1,n1+1):
-            curr = [0] * (n2+1) 
-            curr[0] = 1
-
-            for i2 in range(1,n2+1):
+            for i2 in range(n2,0,-1):
 
                 if s[i1-1] == t[i2-1]:
-                    curr[i2] =  prev[i2-1] + prev[i2]
+                    prev[i2] =  prev[i2-1] + prev[i2]
                 else:
-                    curr[i2] = prev[i2] 
-            prev = curr
+                    prev[i2] = prev[i2] 
+
         
         return prev[n2]
 
+
+# class Solution:
+#     def numDistinct(self, s: str, t: str) -> int:
+
+
+#         n1 = len(s)
+#         n2 = len(t)
+
+
+#         prev = [0] * (n2+1) 
+
+
+#         for i2 in range(n2+1):
+#             prev[i2] = 0
+        
+#         prev[0] = 1
+
+#         for i1 in range(1,n1+1):
+#             curr = [0] * (n2+1) 
+#             curr[0] = 1
+
+#             for i2 in range(1,n2+1):
+
+#                 if s[i1-1] == t[i2-1]:
+#                     curr[i2] =  prev[i2-1] + prev[i2]
+#                 else:
+#                     curr[i2] = prev[i2] 
+#             prev = curr
+        
+#         return prev[n2]
 
 # class Solution:
 #     def numDistinct(self, s: str, t: str) -> int:
