@@ -50,6 +50,41 @@ class Solution:
         return ''.join(ans[::-1])
 
 
+        # # Memoization for the backtrack function
+        # memo = {}
+
+        # # Function to backtrack and find all SCS
+        # def backtrack(i, j):
+        #     if (i, j) in memo:
+        #         return memo[(i, j)]
+
+        #     if i == 0:
+        #         return {str2[:j]}
+        #     if j == 0:
+        #         return {str1[:i]}
+
+        #     if str1[i - 1] == str2[j - 1]:
+        #         result = {x + str1[i - 1] for x in backtrack(i - 1, j - 1)}
+        #     else:
+        #         result = set()
+        #         if dp[i - 1][j] >= dp[i][j - 1]:
+        #             result.update({x + str1[i - 1] for x in backtrack(i - 1, j)})
+        #         if dp[i][j - 1] >= dp[i - 1][j]:
+        #             result.update({x + str2[j - 1] for x in backtrack(i, j - 1)})
+
+        #     memo[(i, j)] = result
+        #     return result
+
+        # # Get all SCS
+        # scs_set = backtrack(n1, n2)
+        # scs_list = list(scs_set)
+        # scs_list.sort()
+
+        # print(scs_list)
+
+        # return scs_list[0]
+
+
 
             
 
