@@ -3,33 +3,52 @@ class Solution:
 
         n = len(prices)
 
-        ahead = [-1] * 2 
 
-        for buy in range(2):
-            ahead[buy] = 0
+        aheadbuy = ahead_nbuy = 0
 
 
-        # Reversed the indexs as opposite in tabulation ( also nth case covered)
         for i in range(n-1,-1,-1):
-            curr = [-1] * 2 
 
-            for buy in range(2):
-
-                if buy == 1:
-                    take = - prices[i] + ahead[0]
-                    ntake = ahead[1]
-                    result = max(take,ntake)
-                else:
-                    sell = prices[i] + ahead[1]
-                    nsell = ahead[0]
-                    result = max(sell,nsell)
-                
-                curr[buy] = result
+            curr_buy = max(- prices[i] + ahead_nbuy,aheadbuy)
+            curr_nbuy = max(prices[i] + aheadbuy,ahead_nbuy)
             
-            ahead = curr
+            aheadbuy = curr_buy
+            ahead_nbuy = curr_nbuy
         
-        return ahead[1]
+        return aheadbuy
 
+
+# class Solution:
+#     def maxProfit(self, prices: List[int]) -> int: 
+
+#         n = len(prices)
+
+#         ahead = [-1] * 2 
+
+#         for buy in range(2):
+#             ahead[buy] = 0
+
+
+#         # Reversed the indexs as opposite in tabulation ( also nth case covered)
+#         for i in range(n-1,-1,-1):
+#             curr = [-1] * 2 
+
+#             for buy in range(2):
+
+#                 if buy == 1:
+#                     take = - prices[i] + ahead[0]
+#                     ntake = ahead[1]
+#                     result = max(take,ntake)
+#                 else:
+#                     sell = prices[i] + ahead[1]
+#                     nsell = ahead[0]
+#                     result = max(sell,nsell)
+                
+#                 curr[buy] = result
+            
+#             ahead = curr
+        
+#         return ahead[1]
 
 # class Solution:
 #     def maxProfit(self, prices: List[int]) -> int: 
