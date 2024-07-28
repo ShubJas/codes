@@ -7,8 +7,8 @@ class Solution:
 
         prev = [False] * (n2+1) 
 
-        for i1 in range(1,n1+1):
-            prev[0] =False
+        # for i1 in range(1,n1+1):
+        #     prev[0] =False
 
 
         for i2 in range(1,n2+1):
