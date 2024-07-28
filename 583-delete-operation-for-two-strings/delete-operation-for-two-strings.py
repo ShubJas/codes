@@ -1,3 +1,4 @@
+#  Intuition - Find LCS then remaining are to be del ( n1 + n2 - 2* LCS)
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
         
