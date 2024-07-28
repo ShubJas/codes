@@ -7,30 +7,67 @@ class Solution:
         n2 = len(word2)
 
 
-        dp = [[0]* (n2+1) for _ in range(n1+1)]
+        prev = [0]* (n2+1) 
 
 
         for i2 in range(n2+1):
-            dp[0][i2] = i2 # not + 1 as its already shifted
+            prev[i2] = i2 # not + 1 as its already shifted
         
-        for i1 in range(n1+1):
-            dp[i1][0] = i1 
+        prev[0] = 0 
 
 
         for i1 in range(1,n1+1):
-
+            curr = [0]* (n2+1) 
+            curr[0] = i1
             for i2 in range(1,n2+1):
 
                 if word1[i1-1] == word2[i2-1]: # match case
-                    dp[i1][i2] = dp[i1-1][i2-1]
+                    curr[i2] = prev[i2-1]
                 
                 else: # mis-match case
-                    insert = 1 + dp[i1][i2-1]
-                    delete = 1 + dp[i1-1][i2]
-                    replace = 1 + dp[i1-1][i2-1]
-                    dp[i1][i2] = min(insert,delete,replace)
+                    insert = 1 + curr[i2-1]
+                    delete = 1 + prev[i2]
+                    replace = 1 + prev[i2-1]
+                    curr[i2] = min(insert,delete,replace)
+            prev = curr
 
-        return dp[n1][n2]
+        return prev[n2]
+
+
+
+# class Solution:
+#     def minDistance(self, word1: str, word2: str) -> int:
+
+
+
+#         n1 = len(word1)
+#         n2 = len(word2)
+
+
+#         dp = [[0]* (n2+1) for _ in range(n1+1)]
+
+
+#         for i2 in range(n2+1):
+#             dp[0][i2] = i2 # not + 1 as its already shifted
+        
+#         for i1 in range(n1+1):
+#             dp[i1][0] = i1 
+
+
+#         for i1 in range(1,n1+1):
+
+#             for i2 in range(1,n2+1):
+
+#                 if word1[i1-1] == word2[i2-1]: # match case
+#                     dp[i1][i2] = dp[i1-1][i2-1]
+                
+#                 else: # mis-match case
+#                     insert = 1 + dp[i1][i2-1]
+#                     delete = 1 + dp[i1-1][i2]
+#                     replace = 1 + dp[i1-1][i2-1]
+#                     dp[i1][i2] = min(insert,delete,replace)
+
+#         return dp[n1][n2]
 
 
 # class Solution:
