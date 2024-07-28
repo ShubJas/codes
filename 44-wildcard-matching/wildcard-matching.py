@@ -5,46 +5,96 @@ class Solution:
         n1 = len(s)
         n2 = len(p)
 
-        dp = [[False] * (n2+1) for _ in range(n1+1)]
+        prev = [False] * (n2+1) 
 
         for i1 in range(1,n1+1):
-            dp[i1][0] =False
+            prev[0] =False
 
 
         for i2 in range(1,n2+1):
             for i in range(1,i2+1):
                 if p[i-1] != '*': 
-                    dp[0][i2]  = False
+                    prev[i2]  = False
                     break
-                dp[0][i2] = True
+                prev[i2] = True
     
     
-        dp[0][0] = True
+        prev[0] = True
 
 
         for i1 in range(1,n1+1):
-
+            curr = [False] * (n2+1) 
             for i2 in range(1,n2+1):
 
                 if p[i2-1] == '?':
-                    result = dp[i1-1][i2-1]
+                    result = prev[i2-1]
 
                 elif p[i2-1] == '*':
-                    use = dp[i1-1][i2]
-                    not_use = dp[i1][i2-1]
+                    use = prev[i2]
+                    not_use = curr[i2-1]
                     result = use or not_use
                 
                 else:
                     if s[i1-1] == p[i2-1]:
-                        result = dp[i1-1][i2-1]
+                        result = prev[i2-1]
                     else:
                         result = False
 
-                dp[i1][i2] = result
+                curr[i2] = result
+            prev = curr
 
 
 
-        return dp[n1][n2]
+        return prev[n2]
+
+
+# class Solution:
+#     def isMatch(self, s: str, p: str) -> bool:
+
+
+#         n1 = len(s)
+#         n2 = len(p)
+
+#         dp = [[False] * (n2+1) for _ in range(n1+1)]
+
+#         for i1 in range(1,n1+1):
+#             dp[i1][0] =False
+
+
+#         for i2 in range(1,n2+1):
+#             for i in range(1,i2+1):
+#                 if p[i-1] != '*': 
+#                     dp[0][i2]  = False
+#                     break
+#                 dp[0][i2] = True
+    
+    
+#         dp[0][0] = True
+
+
+#         for i1 in range(1,n1+1):
+
+#             for i2 in range(1,n2+1):
+
+#                 if p[i2-1] == '?':
+#                     result = dp[i1-1][i2-1]
+
+#                 elif p[i2-1] == '*':
+#                     use = dp[i1-1][i2]
+#                     not_use = dp[i1][i2-1]
+#                     result = use or not_use
+                
+#                 else:
+#                     if s[i1-1] == p[i2-1]:
+#                         result = dp[i1-1][i2-1]
+#                     else:
+#                         result = False
+
+#                 dp[i1][i2] = result
+
+
+
+#         return dp[n1][n2]
 
 
 # class Solution:
