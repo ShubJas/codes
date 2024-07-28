@@ -1,4 +1,5 @@
 #  s1 = s , s2 = rev(s) , now lcs in them is longest pal
+#  M1
 
 class Solution:
     def longestPalindromeSubseq(self, s: str) -> int:
@@ -7,21 +8,43 @@ class Solution:
         t = s[::-1]
 
         # Initialize dp array
-        dp = [[0] * (n + 1) for _ in range(n + 1)]
+        prev = [0] * (n + 1) 
 
         # Fill the dp array
         for i1 in range(1, n + 1):
+            curr = [0] * (n + 1) 
+
             for i2 in range(1, n + 1):
                 if s[i1 - 1] == t[i2 - 1]:
-                    dp[i1][i2] = 1 + dp[i1 - 1][i2 - 1]
+                    curr[i2] = 1 + prev[i2 - 1]
                 else:
-                    dp[i1][i2] = max(dp[i1 - 1][i2], dp[i1][i2 - 1])
+                    curr[i2] = max(prev[i2], curr[i2 - 1])
+            prev = curr
+        
+        return prev[n]
+
+# class Solution:
+#     def longestPalindromeSubseq(self, s: str) -> int:
+
+#         n = len(s)
+#         t = s[::-1]
+
+#         # Initialize dp array
+#         dp = [[0] * (n + 1) for _ in range(n + 1)]
+
+#         # Fill the dp array
+#         for i1 in range(1, n + 1):
+#             for i2 in range(1, n + 1):
+#                 if s[i1 - 1] == t[i2 - 1]:
+#                     dp[i1][i2] = 1 + dp[i1 - 1][i2 - 1]
+#                 else:
+#                     dp[i1][i2] = max(dp[i1 - 1][i2], dp[i1][i2 - 1])
         
         
-        return dp[n][n]
+#         return dp[n][n]
 
 
-
+# M2 - i1+1 ,i2-1
 # class Solution:
 #     def longestPalindromeSubseq(self, s: str) -> int:
 
