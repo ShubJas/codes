@@ -4,36 +4,64 @@ class Solution:
 
         n = len(prices)
 
-        dp = [[-1] * 2 for _ in range(n+1)]
+        dp = [[0] * 2 for _ in range(n+2)]
 
 
-        def calc(i,buy):
+        for i in range(n-1,-1,-1):
+
+            for buy in range(2):
+
+                if buy == 1:
+
+                    take = -prices[i] + dp[i+1][0]
+                    ntake = dp[i+1][1]
+                    result = max(take,ntake)
+                
+                else:
+                    sell = prices[i] + dp[i+2][1] # cant buy next day
+                    nsell = dp[i+1][0]
+                    result = max(sell,nsell)
+                dp[i][buy] = result     
+
+        return dp[0][1]
 
 
-            if i >= n:
-                return 0
+
+# class Solution:
+#     def maxProfit(self, prices: List[int]) -> int:
 
 
-            if dp[i][buy] != -1:
-                return dp[i][buy]
+#         n = len(prices)
+
+#         dp = [[-1] * 2 for _ in range(n+1)]
 
 
-            if buy == 1:
+#         def calc(i,buy):
 
-                take = -prices[i] + calc(i+1,0)
-                ntake = calc(i+1,1)
-                result = max(take,ntake)
+
+#             if i >= n:
+#                 return 0
+
+
+#             if dp[i][buy] != -1:
+#                 return dp[i][buy]
+
+
+#             if buy == 1:
+
+#                 take = -prices[i] + calc(i+1,0)
+#                 ntake = calc(i+1,1)
+#                 result = max(take,ntake)
             
-            else:
-                sell = prices[i] + calc(i+2,1) # cant buy next day
-                nsell = calc(i+1,0)
-                result = max(sell,nsell)
-            dp[i][buy] = result 
+#             else:
+#                 sell = prices[i] + calc(i+2,1) # cant buy next day
+#                 nsell = calc(i+1,0)
+#                 result = max(sell,nsell)
+#             dp[i][buy] = result 
 
-            return dp[i][buy] 
+#             return dp[i][buy] 
 
-        return calc(0,1)
-
+#         return calc(0,1)
 
 
 # class Solution:
