@@ -3,30 +3,50 @@ class Solution:
 
         n = len(prices)
 
-        ahead = [0] * 2 
 
-
-
+        ahead_buy = ahead_nbuy = 0
+        curr_buy = curr_nbuy = 0
 
         for i in range(n-1,-1,-1):
-            curr = [0] * 2 
 
-            for buy in range(2):
-                if buy == 1:
-                    take = -prices[i] + ahead[0]
-                    ntake = ahead[1]
-                    result =  max(take,ntake)
-                else:
-                    sell = prices[i] - fee + ahead[1]
-                    nsell = ahead[0]
-                    result =  max(sell,nsell)
-                
-                curr[buy] = result
+            curr_buy =  max(-prices[i] + ahead_nbuy,ahead_buy)
+            curr_nbuy =  max(prices[i] - fee + ahead_buy,ahead_nbuy)
             
-            ahead = curr
+            ahead_buy = curr_buy
+            ahead_nbuy = curr_nbuy
+
+        return ahead_buy
 
 
-        return ahead[1]
+# class Solution:
+#     def maxProfit(self, prices: List[int], fee: int) -> int:
+
+#         n = len(prices)
+
+#         ahead = [0] * 2 
+
+
+
+
+#         for i in range(n-1,-1,-1):
+#             curr = [0] * 2 
+
+#             for buy in range(2):
+#                 if buy == 1:
+#                     take = -prices[i] + ahead[0]
+#                     ntake = ahead[1]
+#                     result =  max(take,ntake)
+#                 else:
+#                     sell = prices[i] - fee + ahead[1]
+#                     nsell = ahead[0]
+#                     result =  max(sell,nsell)
+                
+#                 curr[buy] = result
+            
+#             ahead = curr
+
+
+#         return ahead[1]
 
 
 # class Solution:
