@@ -5,9 +5,9 @@ class Solution:
         n = len(prices)
         
         ahead = [[0 for _ in range(3)] for _ in range(2)] 
+        curr = [[0 for _ in range(3)] for _ in range(2)] 
 
         for i in range(n-1,-1,-1):
-            curr = [[0 for _ in range(3)] for _ in range(2)] 
             for buy in range(2):
                 
                 for count in range(1,-1,-1):
@@ -26,6 +26,34 @@ class Solution:
         
         return ahead[1][0]
 
+
+# class Solution:
+#     def maxProfit(self, prices: List[int]) -> int:
+
+        
+#         n = len(prices)
+        
+#         ahead = [[0 for _ in range(3)] for _ in range(2)] 
+
+#         for i in range(n-1,-1,-1):
+#             curr = [[0 for _ in range(3)] for _ in range(2)] 
+#             for buy in range(2):
+                
+#                 for count in range(1,-1,-1):
+#                     if buy == 1:
+#                         take = -prices[i] + ahead[0][count]
+#                         ntake = ahead[1][count]
+#                         result = max(take,ntake)
+                    
+#                     else:
+#                         sell = prices[i] + ahead[1][count+1]
+#                         nsell = ahead[0][count]
+#                         result = max(sell,nsell)
+                    
+#                     curr[buy][count] = result
+#             ahead = curr
+        
+#         return ahead[1][0]
 
 # class Solution:
 #     def maxProfit(self, prices: List[int]) -> int:
