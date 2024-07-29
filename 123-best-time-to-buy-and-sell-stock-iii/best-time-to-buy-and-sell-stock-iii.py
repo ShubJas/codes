@@ -4,26 +4,55 @@ class Solution:
         
         n = len(prices)
         
-        dp = [[[0 for _ in range(3)] for _ in range(2)] for _ in range(n+1)]
+        ahead = [[0 for _ in range(3)] for _ in range(2)] 
 
         for i in range(n-1,-1,-1):
-
+            curr = [[0 for _ in range(3)] for _ in range(2)] 
             for buy in range(2):
-
+                
                 for count in range(1,-1,-1):
                     if buy == 1:
-                        take = -prices[i] + dp[i+1][0][count]
-                        ntake = dp[i+1][1][count]
+                        take = -prices[i] + ahead[0][count]
+                        ntake = ahead[1][count]
                         result = max(take,ntake)
                     
                     else:
-                        sell = prices[i] + dp[i+1][1][count+1]
-                        nsell = dp[i+1][0][count]
+                        sell = prices[i] + ahead[1][count+1]
+                        nsell = ahead[0][count]
                         result = max(sell,nsell)
                     
-                    dp[i][buy][count] = result
+                    curr[buy][count] = result
+            ahead = curr
         
-        return dp[0][1][0]
+        return ahead[1][0]
+
+
+# class Solution:
+#     def maxProfit(self, prices: List[int]) -> int:
+
+        
+#         n = len(prices)
+        
+#         dp = [[[0 for _ in range(3)] for _ in range(2)] for _ in range(n+1)]
+
+#         for i in range(n-1,-1,-1):
+
+#             for buy in range(2):
+
+#                 for count in range(1,-1,-1):
+#                     if buy == 1:
+#                         take = -prices[i] + dp[i+1][0][count]
+#                         ntake = dp[i+1][1][count]
+#                         result = max(take,ntake)
+                    
+#                     else:
+#                         sell = prices[i] + dp[i+1][1][count+1]
+#                         nsell = dp[i+1][0][count]
+#                         result = max(sell,nsell)
+                    
+#                     dp[i][buy][count] = result
+        
+#         return dp[0][1][0]
 
 
 
