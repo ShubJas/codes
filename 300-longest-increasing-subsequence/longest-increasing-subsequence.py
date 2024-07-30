@@ -12,9 +12,10 @@ class Solution:
             for prev_i in range(i):
 
                 if nums[prev_i] < nums[i]:
-                    
 
-                    dp[i] = max(dp[i],dp[prev_i]+1)
+                    if dp[prev_i]+1 > dp[i]:
+
+                        dp[i] = dp[prev_i]+1
         
         return max(dp)
 
