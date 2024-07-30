@@ -1,25 +1,116 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         
-        # looking for the max length of a subsequence that 
-        # is strictly ascending order i.e, num[i-blah] < num[i]
-        # look for the max val of a subsequence ending at index
-        # i the minimum value of the length of the subsequence 
-        # ending at i is at least 1 (the smallest subsquence)
-        # will store calculated answers in dp
-        
+        if not nums:
+            return 0
         n = len(nums)
-        dp = [1]*n
+
+        dp = [1] * n
+
+        for i in range(1,n):
+
+            for prev_i in range(i):
+
+                if nums[prev_i] < nums[i]:
+                    
+
+                    dp[i] = max(dp[i],dp[prev_i]+1)
         
-        for i in range(1, n):  # calculate the value of i in dp
-            for j in range(i): # will look at the prior answer for every value proceeding i
-                if nums[i] > nums[j]:  # if i is greater than j then i can be tacked on to the
-                                       # the subsequence ending at j BUT ... 
-                        
-                    dp[i] = max(dp[i], dp[j]+1)   # only update dp[i] if dp[j]+1 is larger than 
-                                                  # what was already found.  
+        return max(dp)
+
+
+
+
+
+
+
+# class Solution:
+#     def lengthOfLIS(self, nums: List[int]) -> int:
         
-        return max(dp) 
+#         n = len(nums)
+
+
+#         ahead = [0]* (n+1) 
+
+
+#         for i in range(n-1,-1,-1):
+#             curr = [0]* (n+1) 
+            
+#             for prev_i in range(i-1,-2,-1):
+
+#                 pick = -float('inf')
+#                 if prev_i == -1 or nums[i] > nums[prev_i]:
+#                     pick = 1 + ahead[i+1]
+                
+#                 npick = ahead[prev_i+1]
+
+#                 curr[prev_i+1] = max(pick,npick)
+            
+#             ahead = curr
+        
+
+#         return ahead[-1 + 1]
+
+
+
+
+# PTR
+# second index in dp is shifted by + 1 -> calc(,*) to dp[][*+1]
+# prev can only be till i-1 ( also will be flipped)
+# prev is till -1
+# class Solution:
+#     def lengthOfLIS(self, nums: List[int]) -> int:
+        
+#         n = len(nums)
+
+
+#         dp = [[0]* (n+1) for _ in range(n+1)]
+
+
+#         for i in range(n-1,-1,-1):
+
+#             for prev_i in range(i-1,-2,-1):
+
+#                 pick = -float('inf')
+#                 if prev_i == -1 or nums[i] > nums[prev_i]:
+#                     pick = 1 + dp[i+1][i+1]
+                
+#                 npick = dp[i+1][prev_i+1]
+
+#                 dp[i][prev_i+1] = max(pick,npick)
+        
+
+#         return dp[0][-1 + 1]
+
+# class Solution:
+#     def lengthOfLIS(self, nums: List[int]) -> int:
+        
+#         n = len(nums)
+
+
+#         dp = [[-1]* (n+1) for _ in range(n)]
+
+#         def calc(i,prev_i):
+
+#             if i == n:
+#                 return 0
+
+
+#             if dp[i][prev_i+1] != -1:
+#                 return dp[i][prev_i+1]
+
+#             pick = -float('inf')
+#             if prev_i == -1 or nums[i] > nums[prev_i]:
+#                 pick = 1 + calc(i+1,i)
+            
+#             npick = calc(i+1,prev_i)
+
+#             dp[i][prev_i+1] = max(pick,npick)
+
+#             return dp[i][prev_i+1]
+        
+
+#         return calc(0,-1)
 
 # class Solution:
 #     def lengthOfLIS(self, nums: List[int]) -> int:
@@ -99,3 +190,53 @@ class Solution:
 
 #         # Start the recursion from the last element of the array with prev_i set to n (out of bounds).
 #         return calc(n - 1, n)
+
+
+# class Solution:
+#     def lengthOfLIS(self, nums: List[int]) -> int:
+        
+#         # looking for the max length of a subsequence that 
+#         # is strictly ascending order i.e, num[i-blah] < num[i]
+#         # look for the max val of a subsequence ending at index
+#         # i the minimum value of the length of the subsequence 
+#         # ending at i is at least 1 (the smallest subsquence)
+#         # will store calculated answers in dp
+        
+#         n = len(nums)
+#         dp = [1]*n
+        
+#         for i in range(1, n):  # calculate the value of i in dp
+#             for j in range(i): # will look at the prior answer for every value proceeding i
+#                 if nums[i] > nums[j]:  # if i is greater than j then i can be tacked on to the
+#                                        # the subsequence ending at j BUT ... 
+                        
+#                     dp[i] = max(dp[i], dp[j]+1)   # only update dp[i] if dp[j]+1 is larger than 
+#                                                   # what was already found.  
+        
+#         return max(dp) 
+
+
+# class Solution:
+#     def lengthOfLIS(self, nums: List[int]) -> int:
+        
+#         n = len(nums)
+
+
+#         dp = [[0]* (n+1) for _ in range(n+1)]
+
+
+#         for i in range(1,n+1):
+
+
+#             for prev_i in range(0,i):
+#                 pick = -float('inf')
+#                 if prev_i == 0 or nums[i-1] < nums[prev_i]:
+#                     pick = 1 +dp[i-1][i]
+                
+#                 npick =dp[i-1][prev_i]
+
+#                 dp[i][prev_i] = max(pick,npick)
+    
+#         return dp[n][n-1]
+
+
