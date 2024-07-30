@@ -3,21 +3,41 @@ class Solution:
         
         if not nums:
             return 0
-        n = len(nums)
 
-        dp = [1] * n
+        store = [nums[0]]
 
-        for i in range(1,n):
+        for x in nums[1:]:
 
-            for prev_i in range(i):
-
-                if nums[prev_i] < nums[i]:
-
-                    if dp[prev_i]+1 > dp[i]:
-
-                        dp[i] = dp[prev_i]+1
+            if x > store[-1]:
+                store.append(x)
+            else:
+                index_to_insert = bisect.bisect_left(store,x)
+                store[index_to_insert] = x
         
-        return max(dp)
+        return len(store)
+
+
+# class Solution:
+#     def lengthOfLIS(self, nums: List[int]) -> int:
+        
+#         if not nums:
+#             return 0
+            
+#         n = len(nums)
+
+#         dp = [1] * n
+
+#         for i in range(1,n):
+
+#             for prev_i in range(i):
+
+#                 if nums[prev_i] < nums[i]:
+
+#                     if dp[prev_i]+1 > dp[i]:
+
+#                         dp[i] = dp[prev_i]+1
+        
+#         return max(dp)
 
 
 
