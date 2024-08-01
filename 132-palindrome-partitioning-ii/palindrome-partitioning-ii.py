@@ -5,9 +5,20 @@ class Solution:
         is_palindrome = [[False] * n for _ in range(n)]  # Precompute palindrome status
 
         # Precompute the palindrome status for every substring
+        # Iterate over the end index of the substring (0 to n-1)
         for end in range(n):
+
+            # For each end index, iterate over the start index (0 to end)
             for start in range(end + 1):
-                if s[start] == s[end] and (end - start <= 2 or is_palindrome[start + 1][end - 1]):
+
+                # Check if the characters at the start and end of the current substring are the same
+                if s[start] == s[end] and (
+                    # The substring is of length 2 or less (i.e., a single character or two identical characters)
+                    end - start <= 2 or 
+                    # The inner substring (excluding start and end) is also a palindrome
+                    is_palindrome[start + 1][end - 1]
+                ):
+                    # If both conditions are satisfied, mark the current substring as a palindrome
                     is_palindrome[start][end] = True
 
         # Fill dp array from the end to the start
