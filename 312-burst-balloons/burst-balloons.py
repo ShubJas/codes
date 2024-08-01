@@ -9,30 +9,28 @@ class Solution:
 
         n = len(nums)
 
-        dp = [[-1] * n for _ in range(n)]
-
-        def calc(i,j):
-
-            if i > j:
-                return 0
-            
-
-            if dp[i][j] != -1:
-                return dp[i][j]
-
-            max_coins = 0
-            for k in range(i,j+1):
+        dp = [[0] * n for _ in range(n)]
 
 
-                coins = nums[i-1] * nums[k] * nums[j+1] + calc(i,k-1) + calc(k+1,j)
-                max_coins = max(max_coins,coins)
+        for i in range(n-1,0,-1):
 
-            dp[i][j] = max_coins
+            for j in range(i,nlen+1):
 
-            return  dp[i][j]
+                max_coins = 0
+                for k in range(i,j+1):
 
 
-        return calc(1,nlen)
+                    coins = nums[i-1] * nums[k] * nums[j+1] + dp[i][k-1] + dp[k+1][j]
+                    max_coins = max(max_coins,coins)
+
+                dp[i][j] = max_coins
+
+
+        return dp[1][nlen]
+
+
+# i -> 1 to n-1
+# j -> nlen to i
 
 
 
