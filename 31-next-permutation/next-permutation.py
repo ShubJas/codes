@@ -3,44 +3,32 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        piv = len(nums) -2
-        while piv>=0 and nums[piv+1]<=nums[piv]:
-            piv-=1
 
-        
-        if piv>=0:
-            j= len(nums)-1
+        # left of galti is sorted(correct) right is wrong
+        # Step 1: Find the left Galti digit
+        piv = len(nums) - 2 # second last element
+        while piv >= 0 and nums[piv] >= nums[piv + 1]:
+            piv -= 1
+
+        # Step 2: If there is galiti
+        if piv >= 0:
+            # Step 3: Find the rightmost successor to the pivot in the suffix.
+            j = len(nums) - 1
             
-            while nums[j]<=nums[piv]:
-                j-=1
+            while nums[j] <= nums[piv]:
+                j -= 1
             
-            nums[piv] , nums[j] = nums[j] , nums[piv]
-        
+            # Step 4: Swap the pivot with its rightmost successor.
+            nums[piv], nums[j] = nums[j], nums[piv]
 
-        nums[piv+1:] = sorted(nums[piv+1:])
-        
+        # Step 5: Reverse the suffix to get the next smallest lexicographical permutation.
+        nums[piv + 1:] = sorted(nums[piv + 1:])
 
-
-
-
-
-
-
-
-
-
-
-
-#         i = len(nums) - 2
-#         while i >= 0 and nums[i] >= nums[i + 1]:
-#             i -= 1
-        
-#         if i >= 0:
-#             j = len(nums) - 1
-#             while nums[j] <= nums[i]:
-#                 j -= 1
-#             nums[i], nums[j] = nums[j], nums[i]
-        
-#         nums[i + 1:] = reversed(nums[i + 1:])
-
-# # This code correctly modifies nums in-place to the next permutation.
+#  1   3   2
+#  piv
+#  1   3    2
+#  piv      j
+#  exchange
+#  2   3    1
+#  piv| sort
+#  2   1    3  
