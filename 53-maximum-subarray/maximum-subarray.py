@@ -8,6 +8,7 @@ class Solution:
 
 
         for n in nums:
+            #           reset , continue
             curr_max = max(n,n+curr_max)
             maxi = max(curr_max,maxi)
         
