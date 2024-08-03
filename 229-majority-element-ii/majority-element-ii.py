@@ -12,11 +12,11 @@ class Solution:
 
 
         for x in nums:
-
+            # keeps count of the 1st ele so it shoudnt be 2nd ele
             if count1 == 0 and x != ele2:
                 ele1 = x
                 count1 += 1
-
+            # keeps count of the 2st ele so it shoudnt be 1nd ele
             elif count2 == 0 and x != ele1:
                 ele2 = x
                 count2 += 1 
