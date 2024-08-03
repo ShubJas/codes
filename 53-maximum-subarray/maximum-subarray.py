@@ -1,32 +1,46 @@
+# Kadane's Algorithm
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         n = len(nums)
-        prev = [None] * 2 
+
+        curr_max = 0
+        maxi = -float('inf')
 
 
-        prev[True] = 0
-        prev[False] = -float('inf')
+        for n in nums:
+            curr_max = max(n,n+curr_max)
+            maxi = max(curr_max,maxi)
+        
+        return maxi
+
+# DP
+# class Solution:
+#     def maxSubArray(self, nums: List[int]) -> int:
+#         n = len(nums)
+#         prev = [None] * 2 
 
 
-        for i in range(1,n+1):
-            curr = [None] * 2 
-            for must_take in [True,False]:
-
-                # Consider taking the current element
-                pick = nums[i-1] + prev[True]
-
-                # Consider not taking the current element
-                if must_take:
-                    npick = 0  # If we must take, then npick is 0
-                else:
-                    npick = prev[False]
-
-                curr[must_take] = max(pick, npick)
-            prev = curr
-
-        return prev[False]
+#         prev[True] = 0
+#         prev[False] = -float('inf')
 
 
+#         for i in range(1,n+1):
+#             curr = [None] * 2 
+#             for must_take in [True,False]:
+
+#                 # Consider taking the current element
+#                 pick = nums[i-1] + prev[True]
+
+#                 # Consider not taking the current element
+#                 if must_take:
+#                     npick = 0  # If we must take, then npick is 0
+#                 else:
+#                     npick = prev[False]
+
+#                 curr[must_take] = max(pick, npick)
+#             prev = curr
+
+#         return prev[False]
 
 
 #  i -> n-1 to 0
