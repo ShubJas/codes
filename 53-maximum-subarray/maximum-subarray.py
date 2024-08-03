@@ -1,33 +1,63 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         n = len(nums)
-        dp = [[None] * 2 for _ in range(n+1)]
+        prev = [None] * 2 
 
 
-        dp[0][True] = 0
-        dp[0][False] = -float('inf')
+        prev[True] = 0
+        prev[False] = -float('inf')
 
 
         for i in range(1,n+1):
-
+            curr = [None] * 2 
             for must_take in [True,False]:
 
                 # Consider taking the current element
-                pick = nums[i-1] + dp[i - 1][True]
+                pick = nums[i-1] + prev[True]
 
                 # Consider not taking the current element
                 if must_take:
                     npick = 0  # If we must take, then npick is 0
                 else:
-                    npick = dp[i - 1][False]
+                    npick = prev[False]
 
-                dp[i][must_take] = max(pick, npick)
+                curr[must_take] = max(pick, npick)
+            prev = curr
 
-        return dp[n][False]
+        return prev[False]
+
+
+
+
 #  i -> n-1 to 0
 #  0 base case
 #  n to 1
+# class Solution:
+#     def maxSubArray(self, nums: List[int]) -> int:
+#         n = len(nums)
+#         dp = [[None] * 2 for _ in range(n+1)]
 
+
+#         dp[0][True] = 0
+#         dp[0][False] = -float('inf')
+
+
+#         for i in range(1,n+1):
+
+#             for must_take in [True,False]:
+
+#                 # Consider taking the current element
+#                 pick = nums[i-1] + dp[i - 1][True]
+
+#                 # Consider not taking the current element
+#                 if must_take:
+#                     npick = 0  # If we must take, then npick is 0
+#                 else:
+#                     npick = dp[i - 1][False]
+
+#                 dp[i][must_take] = max(pick, npick)
+
+#         return dp[n][False]
 
 # class Solution:
 #     def maxSubArray(self, nums: List[int]) -> int:
