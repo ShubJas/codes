@@ -1,13 +1,14 @@
 class Solution:
     def isIdealPermutation(self, nums: List[int]) -> bool:
-        n = len(nums)
-        for x in nums:
-            if abs(x - nums[x]) > 1:
+        for i , num in enumerate(nums):
+            if abs(i - num) > 1:
                 return False
         
         return True
 
-        
+        '''In a perfectly sorted permutation nums of integers from 0 to n-1, the number at index i should be i itself (i.e., nums[i] = i).
+If the element nums[i] is x, then nums[x] should ideally be x. However, the solution checks if abs(x - nums[x]) > 1.
+This condition ensures that the value at any position is not more than one index away from its actual value. If this condition is satisfied, then all global inversions are also local inversions, and vice versa.'''
 
 
 # class Solution:
