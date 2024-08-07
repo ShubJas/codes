@@ -5,11 +5,11 @@ class Solution:
         def feasible(num):
             count = 0
             for row in range(1,m+1):
-
-                if num//row > n:
-                    count+=n
-                else:
-                    count+= num//row
+                count += min(num // row, n)
+                # if num//row > n:
+                #     count+=n
+                # else:
+                #     count+= num//row
             
             return count>=k
 
