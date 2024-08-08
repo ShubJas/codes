@@ -9,18 +9,20 @@ class Solution:
         if not head or not head.next:
             return head
         
+
         dummy = ListNode()
         dummy.next = head
         prev = dummy
 
         while prev.next and prev.next.next:
             first = prev.next
-            sec = prev.next.next
-            
+            second = prev.next.next
 
-            first.next = sec.next
-            sec.next = first
-            prev.next = sec
+            first.next = second.next
+            second.next = first
+            prev.next = second
             prev = first
         
+
         return dummy.next
+
