@@ -1,51 +1,60 @@
 class Solution:
     def smallestDistancePair(self, nums: List[int], k: int) -> int:
-        
+
+        n = len(nums)
 
 
-        def issmaller(dist):
-            count = i = j = 0
-            while i<n:
+        def feasible(dist):
+            count =0
+            i = j =0
+            while i < n:
 
-                while j<n and nums[j]-nums[i] <= dist:
+                while j < n and nums[j] - nums[i] <= dist:
                     j+=1
-                count += j - i - 1
-                i+=1
+                count += j - i -1
+                i +=1
+            
             return count >= k
+
+
+
 
             
 
+
+
         nums.sort()
+
         l = 0
         r = nums[-1] - nums[0]
-        n = len(nums)
-        while l<r:
-            m = (l+r)//2
 
-            if issmaller(m):
-                r =m
+        while l<r:
+
+            mid = (l+r)//2
+
+            if feasible(mid):
+                r = mid
             else:
-                l = m+1
+                l = mid+1
+
         return l
 
 
-        # def issmaller(dist):
-        #     count = 0
-        #     for i in range(len(nums)-1):
-        #         for j in range(i+1,len(nums)):
-        #             if abs(nums[j]-nums[i]) <= dist:
-        #                 count +=1
-        #     return count >=k
-
-
-        # l = 0
-        # r = max(nums) - min(nums)
+        # distances = []
+        # for i in range(n-1):
+        #     for j in range(i+1,n):
+        #         distances.append(abs(nums[i]-nums[j]))
         
-        # while l<r:
-        #     m = (l+r)//2
 
-        #     if issmaller(m):
-        #         r =m
-        #     else:
-        #         l = m+1
-        # return l
+        # heapq.heapify(distances)
+
+        # while k> 1:
+        #     heapq.heappop(distances)
+        #     k-=1
+        
+            
+        # return heapq.heappop(distances)
+
+
+        
+        
