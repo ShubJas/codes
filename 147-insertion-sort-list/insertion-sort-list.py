@@ -6,26 +6,33 @@
 class Solution:
     def insertionSortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         
-        dummy = ListNode(0, head)
 
-        prev = head
+
+
+        dummy = ListNode()
+        dummy.next = head
+
+        prev= head
         curr = head.next
+
+
         while curr:
-            if curr.val >=prev.val:
-                prev = curr
+
+            if prev.val <= curr.val:
+                prev = prev.next
                 curr = curr.next
                 continue
             
-            pos = dummy
+            start = dummy
 
-            while pos.next.val  < curr.val:
-                pos = pos.next
+
+            while start.next.val < curr.val:
+                start = start.next
             
+
             prev.next = curr.next
-            curr.next = pos.next
-            pos.next = curr
+            curr.next = start.next
+            start.next = curr
             curr = prev.next
         
         return dummy.next
-
-        
