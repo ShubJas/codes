@@ -10,18 +10,19 @@ class Node:
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         
-        oldtonew ={None:None}
-
-        curr  = head
-        while curr:
-            oldtonew[curr] = ListNode(curr.val)
-            curr = curr.next
-        
-
+        oldtonew = {None : None}
         curr = head
         while curr:
-            oldtonew[curr].next = oldtonew[curr.next]
-            oldtonew[curr].random = oldtonew[curr.random]
+            oldtonew[curr] = Node(curr.val)
             curr = curr.next
         
+        curr = head
+        while curr:
+            oldtonew[curr].next =oldtonew[curr.next]
+            oldtonew[curr].random = oldtonew[curr.random]
+            curr =curr.next
+        
         return oldtonew[head]
+
+
+        
