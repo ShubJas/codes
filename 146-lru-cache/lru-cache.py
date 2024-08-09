@@ -1,48 +1,48 @@
-class Node:
-    def __init__(self,key = 0,val = 0,next = None,prev = None):
-        self.key = key
+class ListNode:
+    def __init__(self,val=0,key=0,next=None,prev=None):
         self.val = val
-        self.next = next
+        self.key = key
         self.prev = prev
-
-
+        self.next = next
+        
 class LRUCache:
+
     def __init__(self, capacity: int):
         self.cap = capacity
         self.cache = {}
-        # left and right are dummy nodes
-        self.left , self.right = Node(), Node()
-        self.left.next , self.right.prev = self.right, self.left
+        self.left = ListNode()
+        self.right = ListNode()
+        self.left.next,self.right.prev = self.right,self.left
 
-    def remove(self,node):
-        before, after = node.prev , node.next
-        before.next , after.prev= after , before
-        
+    def delete(self,node):
+        first = node.prev
+        second = node.next
+        first.next , second.prev = second , first
+    
     def insert(self,node):
-        # Inserting to the left of mru(right)
-        before , after = self.right.prev , self.right
-        before.next = after.prev = node
-        node.prev , node.next = before , after
-
+        first = self.right.prev
+        second = self.right
+        first.next = second.prev = node 
+        node.prev , node.next = first , second
 
     def get(self, key: int) -> int:
         if key in self.cache:
-            self.remove(self.cache[key])
+            self.delete(self.cache[key])
             self.insert(self.cache[key])
             return self.cache[key].val
         return -1
-
         
 
     def put(self, key: int, value: int) -> None:
         if key in self.cache:
-            self.remove(self.cache[key])
-        self.cache[key] = Node(key,value)
-        self.insert(self.cache[key])
+            self.delete(self.cache[key])
+        newnode = ListNode(value,key)
+        self.cache[key] = newnode
+        self.insert(newnode)
 
         if len(self.cache) > self.cap:
             lru = self.left.next
-            self.remove(lru)
+            self.delete(lru)
             del self.cache[lru.key]
         
 
