@@ -11,25 +11,22 @@ class Solution:
         """
 
 
-        def dfs(root):
+        curr = root
 
-            if not root:
-                return
-            
-
-            lefttail = dfs(root.left)
-            righttail = dfs(root.right)
-
-
-            if root.left:
-                if lefttail:
-                    lefttail.right = root.right
-                root.right = root.left
-                root.left = None
-            
-            return righttail or lefttail or root
+        while curr:
+            if curr.left:
+                if curr.right:
+                    temp = curr.right
+                    curr.right = curr.left
+                    temp2 = curr.left
+                    while temp2.right:
+                        temp2 = temp2.right
+                    temp2.right = temp
+                else:
+                    curr.right = curr.left
+            curr.left  = None
+            curr = curr.right
         
-        dfs(root)
-        
+        return root
     
             
