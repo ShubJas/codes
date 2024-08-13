@@ -3,12 +3,14 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
+# If psum exists in the hashmap, it means that the sublist between the node stored in hashmap[psum] and the current node has a sum of zero.
 class Solution:
     def removeZeroSumSublists(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
         hashmap = defaultdict(ListNode)
         dummy = ListNode(0,head)
-        curr = dummy
+        curr = dummy    
         psum = 0
         while curr:
             psum += curr.val
