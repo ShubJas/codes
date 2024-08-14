@@ -14,12 +14,14 @@ class Solution:
 
         for i in range(n):
             curr = [-1] * m
+            curr[0] = 1
+
             for j in range(m):
                 if obstacleGrid[i][j] == 1:
                     curr[j] = 0
                     continue
                 if i == 0 and j == 0:
-                    curr[j] = prev[j]
+                    # curr[j] = prev[j] # as when we shift prev = curr , that time prev(now curr) should also be 1
                     continue
                 up = left = 0
                 if i>0:
