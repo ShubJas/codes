@@ -11,9 +11,11 @@ class Solution:
 
         for i in range(n):
             curr = [-1] * m
+            curr[0] = grid[0][0]
+
             for j in range(m):
                 if i == 0 and j == 0:
-                    curr[j] = prev[j]
+                    # curr[j] = prev[j]
                     continue
                 up = left = float('inf') 
                 if i>0:
