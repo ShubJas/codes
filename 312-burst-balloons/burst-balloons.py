@@ -30,7 +30,7 @@ class Solution:
         return dp[1][nlen]
 
 
-# i -> 1 to n-1
+# i -> 1 to nlen
 # j -> nlen to i
 
 
