@@ -25,6 +25,28 @@ class Solution:
         
         return dp[0]
 
+# class Solution:
+#     def maxSumAfterPartitioning(self, arr: List[int], k: int) -> int:
+
+        
+#         n = len(arr)
+        
+
+
+#         dp = [0] * (n+1)
+
+#         for i in range(n-1,-1,-1):
+
+#             maxi = -float('inf') 
+#             for j in range(i,min(n,i+k)):
+#                 S = (j-i+1) * max(arr[i:j+1]) + dp[j+1]
+#                 maxi = max(maxi,S) 
+            
+#             dp[i] = maxi
+
+        
+#         return dp[0]
+
 
 # class Solution:
 #     def maxSumAfterPartitioning(self, arr: List[int], k: int) -> int:
