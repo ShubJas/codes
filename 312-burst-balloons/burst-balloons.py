@@ -1,3 +1,4 @@
+# Intuition - start with bursting last Baloon
 class Solution:
     def maxCoins(self, nums: List[int]) -> int:
 
@@ -12,7 +13,7 @@ class Solution:
         dp = [[0] * n for _ in range(n)]
 
 
-        for i in range(n-1,0,-1):
+        for i in range(nlen,0,-1):
 
             for j in range(i,nlen+1):
 
