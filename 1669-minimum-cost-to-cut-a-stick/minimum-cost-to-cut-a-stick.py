@@ -11,7 +11,7 @@ class Solution:
         dp = [[0] * nn for _ in range(nn)]
 
 
-        for i in range(nn-1,0,-1):
+        for i in range(len_cuts,0,-1):
 
             for j in range(i,len_cuts+1):
 
