@@ -1,55 +1,57 @@
-class Solution:
-    def lengthOfLIS(self, nums: List[int]) -> int:
-        # If nums is empty, return 0 as there can't be any increasing subsequence
-        if not nums:
-            return 0
-
-        # 'store' will hold the smallest end element of the increasing subsequences of different lengths found so far
-        store = [nums[0]]  # Initialize store with the first element of nums
-
-        # Iterate through each number in the list starting from the second element
-        for x in nums[1:]:
-            # If the current number x is greater than the last element in 'store',
-            # it can extend the longest increasing subsequence found so far
-            if x > store[-1]:
-                store.append(x)  # Append x to 'store'
-            else:
-                # If x is not greater than the last element in 'store',
-                # we find the position where x should be inserted to maintain sorted order.
-                # 'bisect_left' returns the leftmost place to insert x to keep 'store' sorted
-                index_to_insert = bisect.bisect_left(store, x)
-                # We replace the element at index_to_insert with x.
-                # This doesn't actually extend the subsequence length but prepares 'store'
-                # for potentially longer increasing subsequences by keeping the smallest possible numbers
-                # at each position in 'store'
-                store[index_to_insert] = x
-
-        # The length of 'store' will give us the length of the longest increasing subsequence
-        return len(store)
-
-
-
 # class Solution:
 #     def lengthOfLIS(self, nums: List[int]) -> int:
-        
+#         # If nums is empty, return 0 as there can't be any increasing subsequence
 #         if not nums:
 #             return 0
-            
-#         n = len(nums)
 
-#         dp = [1] * n
+#         # 'store' will hold the smallest end element of the increasing subsequences of different lengths found so far
+#         store = [nums[0]]  # Initialize store with the first element of nums
 
-#         for i in range(1,n):
+#         # Iterate through each number in the list starting from the second element
+#         for x in nums[1:]:
+#             # If the current number x is greater than the last element in 'store',
+#             # it can extend the longest increasing subsequence found so far
+#             if x > store[-1]:
+#                 store.append(x)  # Append x to 'store'
+#             else:
+#                 # If x is not greater than the last element in 'store',
+#                 # we find the position where x should be inserted to maintain sorted order.
+#                 # 'bisect_left' returns the leftmost place to insert x to keep 'store' sorted
+#                 index_to_insert = bisect.bisect_left(store, x)
+#                 # We replace the element at index_to_insert with x.
+#                 # This doesn't actually extend the subsequence length but prepares 'store'
+#                 # for potentially longer increasing subsequences by keeping the smallest possible numbers
+#                 # at each position in 'store'
+#                 store[index_to_insert] = x
 
-#             for prev_i in range(i):
+#         # The length of 'store' will give us the length of the longest increasing subsequence
+#         return len(store)
 
-#                 if nums[prev_i] < nums[i]:
 
-#                     if dp[prev_i]+1 > dp[i]:
 
-#                         dp[i] = dp[prev_i]+1
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
         
-#         return max(dp)
+        if not nums:
+            return 0
+            
+        n = len(nums)
+
+        dp = [1] * n
+
+        for i in range(1,n):
+
+            for prev_i in range(i):
+
+
+                if nums[prev_i] < nums[i]:
+                    
+                    dp[i] = max(dp[i],dp[prev_i]+1)
+                    # if dp[prev_i]+1 > dp[i]:
+
+                    #     dp[i] = dp[prev_i]+1
+        
+        return max(dp)
 
 
 
