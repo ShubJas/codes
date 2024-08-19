@@ -1,3 +1,36 @@
+# l -> 1 to n-1
+# base case dp[n][] = 0
+# clipboard -> 0 to l
+
+
+
+# class Solution:
+#     def minSteps(self, n: int) -> int:
+
+#         dp = [[float('inf')]* (n+1) for _ in range(n+1)]
+
+#         for clipboard in range(n+1):
+#             dp[n][clipboard] = 0
+
+
+#         for l in range(n-1,0,-1):
+
+#             for clipboard in range(l,-1,-1):
+
+#                 copy = paste = float('inf')
+
+#                 if l!= clipboard:
+#                     copy = 1 + dp[l][l]
+                
+#                 if clipboard>0 and l + clipboard <= n:
+#                     paste = 1 + dp[l + clipboard][clipboard]
+                
+
+#                 dp[l][clipboard] = min(copy,paste)
+
+     
+#         return dp[1][0]
+
 class Solution:
     def minSteps(self, n: int) -> int:
 
