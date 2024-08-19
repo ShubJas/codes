@@ -1,28 +1,42 @@
 class Solution:
     def maxPoints(self, points: List[List[int]]) -> int:
+        # Get the number of rows (r) and columns (c) in the points grid
+        r, c = len(points), len(points[0])
 
-
-        n = len(points)
-        m = len(points[0])
-        
-
-
-        for r in range(1,n):
-
-            right = [0] * m
-
-            right[-1] = points[r-1][-1]
-            for c in range(m-2,-1,-1):
-                right[c] = max(right[c+1]-1,points[r-1][c])
+        # Iterate through each row starting from the second row
+        for i in range(1, r):
+            # Create a temporary array 'right' to store the maximum points
+            # achievable when moving right-to-left in the previous row
+            right = [0] * c
             
-            left = points[r-1][0]
-            points[r][0] = max(left,right[0]) + points[r][0]
+            # Initialize the rightmost value of 'right' with the last column of the previous row
+            right[-1] = points[i-1][-1]
 
-            for c in range(1,m):
-                left = max(left-1,points[r-1][c])
-                points[r][c] = max(left,right[c]) + points[r][c]
+            # Fill the 'right' array by calculating maximum points from right-to-left
+            for j in range(c-2, -1, -1):
+                # Calculate the maximum points by considering the right neighbor and moving left
+                right[j] = max(right[j+1] - 1, points[i-1][j])
 
-        return max(points[-1])   
+            # Initialize 'left' with the first column of the previous row
+            left = points[i-1][0]
+
+            # Update the first column of the current row
+            # This considers the maximum between moving directly down or from the right
+            points[i][0] = max(left, right[0]) + points[i][0]
+
+            # Update the rest of the columns in the current row from left to right
+            for j in range(1, c):
+                # Update 'left' by considering the left neighbor and moving right
+                left = max(left - 1, points[i-1][j])
+
+                # Update the current cell by adding the maximum points
+                # achievable from either left or right, plus the current cell's points
+                points[i][j] = max(left, right[j]) + points[i][j]
+
+        # The answer is the maximum value in the last row, which represents
+        # the maximum points that can be collected from top to bottom
+        return max(points[-1])
+
 
 
 
