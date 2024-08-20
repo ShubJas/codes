@@ -21,7 +21,8 @@ class Solution:
             root_x, root_y = root_y, root_x
 
         # Merge the trees and update the rank
-        self.rank[root_x] += self.rank[root_y]
+        if self.rank[root_x] == self.rank[root_y]:
+            self.rank[root_x] += 1
         self.parent[root_y] = root_x
         return True
 
