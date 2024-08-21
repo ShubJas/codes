@@ -26,9 +26,9 @@ class Solution:
                 i, j = q.popleft()  # Dequeue the next cell
 
                 # Check if the cell is within bounds, unvisited, and is a fresh orange
-                if 0 <= i < self.rows and 0 <= j < self.cols and not visited[i][j] and grid[i][j] == 1:
+                if 0 <= i < self.rows and 0 <= j < self.cols and grid[i][j] == 1:
                     grid[i][j] = 2  # Mark orange as rotten
-                    visited[i][j] = True  # Mark cell as visited
+
                     # Enqueue adjacent cells for BFS
                     q.append((i + 1, j))
                     q.append((i - 1, j))
