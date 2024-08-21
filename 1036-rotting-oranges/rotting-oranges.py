@@ -16,7 +16,7 @@ class Solution:
                     q.append((i, j + 1))
                     q.append((i, j - 1))
 
-        visited = [[False for _ in range(self.cols)] for _ in range(self.rows)]  # Initialize visited matrix
+        # visited = [[False for _ in range(self.cols)] for _ in range(self.rows)]  # Initialize visited matrix
         minutes = 0  # Initialize time counter
 
         while q:
