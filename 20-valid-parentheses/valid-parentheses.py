@@ -1,24 +1,17 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        n = len(s)
-        if n & 1:
-            return False
 
-        mapping = {'}':'{',']':'[',')':'('}
+
+        mapper = {']':'[','}':'{',')':'('}
         stack = []
         for c in s:
-            if c not in mapping:
+            if c not in mapper:
                 stack.append(c)
-                continue
-            
-            if not stack or stack[-1] != mapping[c]:
-                return False
-            
-            stack.pop()
+            else:
+                if not stack or stack[-1] != mapper[c]:
+                    return False
+                stack.pop()
         
         return not stack
-
-
-
-        
+                
         
