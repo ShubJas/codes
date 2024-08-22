@@ -7,6 +7,10 @@ class MinStack:
 
     def push(self, val: int) -> None:
         self.stack.append(val)
+        # Push the minimum value onto the minstack.
+        # If the minstack is empty, or the new value is smaller than the current minimum,
+        # push the new value onto minstack.
+        # Otherwise, push the current minimum again to maintain the correct minimum value at this level.( same length)
         self.minstack.append(val if not self.minstack or val< self.minstack[-1] else self.minstack[-1])
 
     def pop(self) -> None:
