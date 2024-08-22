@@ -2,17 +2,18 @@ class Solution:
     def findComplement(self, num: int) -> int:
 
         binary = bin(num)[2:]
-        binary = list(binary)
+        # binary = list(binary)
+        result = []
         # print(binary)
 
 
-        for i in range(len(binary)):
-            if binary[i]=='1':
-                binary[i] = '0'
+        for ch in binary:
+            if ch=='1':
+                result.append('0')
             else:
-                binary[i] = '1'
+                result.append('1')
         
-        binary = ''.join(binary)
-        # print(binary)
+        result = ''.join(result)
+        print(result)
 
-        return int(binary,2)
+        return int(result,2)
