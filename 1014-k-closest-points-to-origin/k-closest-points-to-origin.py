@@ -4,7 +4,7 @@ class Solution:
 
 
         def dist(p1,points):
-            return pow(pow(p1[0],2)+pow(p1[1],2),0.5)
+            return pow(p1[0],2)+pow(p1[1],2)
         
 
         pq = []
