@@ -4,7 +4,6 @@ class Solution:
 
 
         def dist(p1,points):
-            # p1 = points[i]
             return pow(pow(p1[0],2)+pow(p1[1],2),0.5)
         
 
