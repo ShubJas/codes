@@ -1,54 +1,67 @@
+# BFS -> spcial parent adj graph
+# DFS -> recusive backtrack
 class Solution:
-    def findAllPaths(self, res: List[List[str]], currentWord: str, beginWord: str, parents: dict, path: List[str]):
-        # Add the current word to the path
-        path.append(currentWord)
-        
-        # If the current word is the beginWord, reverse the path and add it to results
-        if currentWord == beginWord:
-            res.append(path[::-1])
-        else:
-            # Recursively visit all parents of the current word
-            for word in parents[currentWord]:
-                self.findAllPaths(res, word, beginWord, parents, path)
-        
-        # Remove the current word from the path before backtracking
-        path.pop()
-
     def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
-        wordSet = set(wordList)
-        if endWord not in wordSet:
+        
+
+
+        words = set(wordList)
+        if endWord not in words:
             return []
+        wlen = len(beginWord)
 
         parents = defaultdict(list)
-        levels = {beginWord: 0}
-        q = deque([beginWord])
-        found = False
-        wordLen = len(beginWord)
-        
-        # BFS to construct the graph
-        while q and not found:
-            level_size = len(q)
-            local_visited = set()
-            for _ in range(level_size):
+        word_level = defaultdict(int)
+        word_level[beginWord] = 0
+
+        q = collections.deque([beginWord])
+        stop = False
+        while q and not stop:
+
+            qlen = len(q)
+            local_visited =set()
+
+            for _ in range(qlen):
+
                 word = q.popleft()
-                current_level = levels[word]
-                for i in range(wordLen):
-                    for c in 'abcdefghijklmnopqrstuvwxyz':
-                        newWord = word[:i] + c + word[i+1:]
-                        if newWord in wordSet:
-                            if newWord not in levels:
-                                levels[newWord] = current_level + 1
-                                q.append(newWord)
-                                local_visited.add(newWord)
-                            if levels[newWord] == current_level + 1:
-                                parents[newWord].append(word)
-                            if newWord == endWord:
-                                found = True
-            
-            # Remove words that were added in this level to prevent loops
-            wordSet -= local_visited
+                curr_level = word_level[word]
+
+                for i in range(wlen):
+                    for ch in 'abcdefghijklmnopqrstuvwxyz':
+                        newword = word[:i] + ch + word[i+1:]
+
+                        if newword in words:
+                            if newword not in word_level:
+                                word_level[newword] = curr_level + 1
+                                q.append(newword)
+                                local_visited.add(newword)
+                            
+                            if word_level[newword] == curr_level + 1:
+                                parents[newword].append(word)
+                            
+                            if newword == endWord:
+                                stop = True
+            words -= local_visited
+
+
+        stack = []
+        result = []
+        def backtrack(word):
+
+            stack.append(word)
+
+            if word == beginWord:
+                result.append(stack[::-1])
+            else:
+                
+                for parent in parents[word]:
+                    backtrack(parent)
+                
+            stack.pop()
         
-        res = []
-        if endWord in parents:
-            self.findAllPaths(res, endWord, beginWord, parents, [])
-        return res
+
+        backtrack(endWord)
+        return result
+
+
+
