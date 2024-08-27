@@ -50,3 +50,30 @@ class Solution:
 
         return calc(0)
 
+
+
+# class Solution:
+#     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        
+#         n = len(s) 
+        
+#         words = set(wordDict)
+#         def calc(start):
+
+#             if start >= n:
+#                 return True
+            
+
+
+#             word = ''
+#             for i in range(start,n):
+#                 word += s[i]
+#                 if word in words:
+#                     if calc(i+1):
+#                         return True
+            
+#             return False
+        
+
+#         return calc(0)
+
