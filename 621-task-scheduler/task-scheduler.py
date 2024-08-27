@@ -1,29 +1,50 @@
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         
-        count  = defaultdict(int)
+        # Step 1: Count the frequency of each task
+        # We use a defaultdict to store the frequency of each task.
+        count = defaultdict(int)
 
-
+        # Populate the frequency dictionary by iterating through all tasks
         for task in tasks:
             count[task] += 1
         
+        # Step 2: Create a max-heap from the frequencies
+        # In Python, heapq is a min-heap by default, so we store negative frequencies
+        # to simulate a max-heap (because we want to always pop the most frequent task)
         pq = [-x for x in count.values()]
 
+        # Convert the list into a heap (min-heap which we use as max-heap with negative values)
         heapq.heapify(pq)
 
+        # Step 3: Initialize a timer to keep track of the total time elapsed
         time = 0
+
+        # Initialize a deque to keep track of tasks that are cooling down
+        # Each entry in the deque is a tuple (remaining count of a task, time when it can be re-added to heap)
         q = deque()
+        
+        # Step 4: Process the tasks in the priority queue (max-heap) and the cooling queue
         while pq or q:
+            # Increment the time counter with each iteration, simulating the passage of time
             time += 1
 
+            # If there are tasks available in the priority queue
             if pq:
-                cnt = 1 + heapq.heappop(pq)
+                # Pop the most frequent task from the heap (max frequency task)
+                cnt = 1 + heapq.heappop(pq)  # Add 1 because we stored negative values
+
+                # If the task still has remaining instances, append it to the cooling queue
+                # The task will be ready to be scheduled again after 'time + n' units
                 if cnt:
-                    q.append((cnt,time+n))
+                    q.append((cnt, time + n))
             
+            # If there's a task in the cooling queue that is ready to be scheduled again
             if q and q[0][1] == time:
-                heapq.heappush(pq,q.popleft()[0])
+                # Re-add the task to the priority queue (it has finished its cooldown period)
+                heapq.heappush(pq, q.popleft()[0])
         
+        # The total time taken to complete all tasks is returned
         return time
 
 
