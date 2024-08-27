@@ -41,8 +41,8 @@ class Solution:
             for i in range(start,n):
                 word += s[i]
                 if word in words:
-                    dp[start] = calc(i+1)
-                    if dp[start]:
+                    dp[i+1] = calc(i+1)
+                    if dp[i+1]:
                         return True
             
             return False
