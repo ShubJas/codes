@@ -7,14 +7,20 @@ class Solution:
         for task in tasks:
             count[task] += 1
 
-        max_count = max(count.values())
-        no_of_max = list(count.values()).count(max_count)
+        tasks = [-cnt for cnt in count.values()]
+        heapq.heapify(tasks)
+        q = deque()
+        time = 0
+        while tasks or q:
 
-        divisions = max_count - 1
-        length_per_div = n - (no_of_max - 1)
-        spaces = divisions * length_per_div
-        a_tasks = len(tasks) - max_count * no_of_max
-        idles = max(0,spaces - a_tasks)
+            time +=1
 
+            if tasks: 
+                cnt = heapq.heappop(tasks) + 1
+                if cnt:
+                    q.append((cnt,time+n))
+            
+            if q and q[0][1] == time:
+                heapq.heappush(tasks,q.popleft()[0])
 
-        return len(tasks) + idles
+        return time
