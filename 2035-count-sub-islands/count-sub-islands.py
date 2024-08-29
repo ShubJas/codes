@@ -17,7 +17,7 @@ class Solution:
             # If this cell is land in grid2 but not in grid1, it's not a sub-island
             is_sub_island = grid1[x][y] == 1
 
-            # Explore all four directions
+            # Explore all four directions - cant do one return as we have to explore
             # Even if one direction returns False, the entire island can't be a sub-island
             is_sub_island = dfs(x+1, y) and is_sub_island
             is_sub_island = dfs(x-1, y) and is_sub_island
