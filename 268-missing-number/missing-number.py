@@ -1,8 +1,19 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
         
-        S = sum([x for x in range(len(nums)+1)])
-        return S - sum(nums)
+        S = len(nums)
+
+        for i in range(len(nums)):
+            S += i - nums[i]
+        
+        return  S
+
+        
+# class Solution:
+#     def missingNumber(self, nums: List[int]) -> int:
+        
+#         S = sum([x for x in range(len(nums)+1)])
+#         return S - sum(nums)
 
 # class Solution:
 #     def missingNumber(self, nums: List[int]) -> int:
