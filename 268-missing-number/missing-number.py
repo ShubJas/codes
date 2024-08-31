@@ -1,15 +1,20 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
         
-        xor = 0
-        for n in nums:
-            xor ^= n
+        S = sum([x for x in range(len(nums)+1)])
+        return S - sum(nums)
 
-        for n in range(len(nums)+1):
-            xor ^= n
+# class Solution:
+#     def missingNumber(self, nums: List[int]) -> int:
         
-        return xor
+#         xor = 0
+#         for n in nums:
+#             xor ^= n
 
+#         for n in range(len(nums)+1):
+#             xor ^= n
+        
+#         return xor
 
 # class Solution:
 #     def missingNumber(self, nums: List[int]) -> int:
