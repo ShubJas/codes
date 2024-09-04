@@ -5,7 +5,7 @@ class Solution:
         digits = digits[::-1]
         i = 0
         n = len(digits)
-        while carry or i<n:
+        while carry and i<n:
             digit = digits[i] + carry 
             carry = digit // 10
             i+=1
