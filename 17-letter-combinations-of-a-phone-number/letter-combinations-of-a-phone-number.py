@@ -21,15 +21,15 @@ class Solution:
         def backtrack(i,stack):
 
             if i == n :
-                if len(stack) == n:
-                    result.append(''.join(stack))
+                # if len(stack) == n:
+                result.append(''.join(stack))
                 return
 
             for ch in keyboard[digits[i]]:
                 stack.append(ch)
                 backtrack(i+1,stack)
                 stack.pop()
-                backtrack(i+1,stack)
+                # backtrack(i+1,stack)
             
         backtrack(0,[])
 
