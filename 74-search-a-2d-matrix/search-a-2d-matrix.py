@@ -1,28 +1,33 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        if not matrix:
+        # Get the number of rows and columns in the matrix
+        rows = len(matrix)
+        if rows == 0:
             return False
+        cols = len(matrix[0])
 
-        row_first, row_last = 0, len(matrix) - 1
+        # Step 1: Binary Search to find the correct row where the target might be present
+        top = 0
+        bottom = rows - 1
 
-        while row_first <= row_last:
-            row_mid = (row_first + row_last) // 2
-            # Directly start binary search in the potential row.
-            l, r = 0, len(matrix[0]) - 1
-            
-            while l <= r:
-                m = (l + r) // 2
-                if matrix[row_mid][m] == target:
-                    return True
-                elif matrix[row_mid][m] < target:
-                    l = m + 1
-                else:
-                    r = m - 1
-
-            # Update row search boundaries based on comparison with the first and last elements of the mid row.
-            if target > matrix[row_mid][-1]:
-                row_first = row_mid + 1
+        while top <= bottom:
+            midr = (top + bottom) // 2
+            # Check if the target lies within the current row
+            if matrix[midr][0] <= target <= matrix[midr][-1]:
+                # Step 2: Binary search within the identified row to find the target
+                l, r = 0, cols - 1
+                while l <= r:
+                    mid = (l + r) // 2
+                    if matrix[midr][mid] == target:
+                        return True
+                    elif matrix[midr][mid] < target:
+                        l = mid + 1
+                    else:
+                        r = mid - 1
+                return False
+            elif target < matrix[midr][0]:
+                bottom = midr - 1
             else:
-                row_last = row_mid - 1
-        
+                top = midr + 1
+
         return False
