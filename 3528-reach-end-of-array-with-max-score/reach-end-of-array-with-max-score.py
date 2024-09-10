@@ -9,7 +9,7 @@ class Solution:
             while j < n - 1 and nums[i] > nums[j]:
                 j+=1
             score += (j - i) * nums[i]
-            print(i,j)
+            # print(i,j)
             i = j
         
         return score
