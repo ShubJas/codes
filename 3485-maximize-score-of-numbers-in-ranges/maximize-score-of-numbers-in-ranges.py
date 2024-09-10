@@ -36,7 +36,7 @@ class Solution:
             '''
             The reason for taking mid = (l + r + 1) // 2 instead of mid = (l + r) // 2 in this particular case is to avoid getting stuck in an infinite loop during the binary search. This approach is sometimes called "upper-bound binary search".
             '''
-            mid = (l + r + 1) // 2  # Calculate the middle point in binary search
+            mid = (l + r + 1) >> 1  # Calculate the middle point in binary search
 
             if feasible(mid):
                 l = mid  # If it's feasible to have at least 'mid' difference, search for a larger difference
