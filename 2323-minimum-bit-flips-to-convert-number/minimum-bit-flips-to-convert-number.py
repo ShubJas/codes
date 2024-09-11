@@ -1,3 +1,18 @@
+class Solution:
+    def minBitFlips(self, start: int, goal: int) -> int:
+
+        xor,count = start ^ goal, 0
+
+        while xor:
+
+            xor &= xor-1
+            count+=1
+        
+        return count
+
+
+
+
 # class Solution:
 #     def minBitFlips(self, start: int, goal: int) -> int:
 #         count = 0
@@ -9,16 +24,16 @@
         
 #         return count
 
-class Solution:
-    def minBitFlips(self, start: int, goal: int) -> int:
-        count = 0
-        while start or goal:
-            if start % 2 != goal % 2:
-                count+=1
-            start //= 2
-            goal //= 2
+# class Solution:
+#     def minBitFlips(self, start: int, goal: int) -> int:
+#         count = 0
+#         while start or goal:
+#             if start % 2 != goal % 2:
+#                 count+=1
+#             start //= 2
+#             goal //= 2
         
-        return count
+#         return count
 
 
 
