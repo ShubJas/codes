@@ -1,10 +1,10 @@
 class Solution:
     def minBitFlips(self, start: int, goal: int) -> int:
-
+        #  GET 1 IN DIFFER PLACE
         xor,count = start ^ goal, 0
 
         while xor:
-
+            # UNSETS LOWEST SET BIT
             xor &= xor-1
             count+=1
         
