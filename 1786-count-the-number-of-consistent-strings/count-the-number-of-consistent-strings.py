@@ -17,3 +17,6 @@ class Solution:
 
         return count
 
+# def countConsistentStrings(self, allowed: str, words: List[str]) -> int: 
+#     alphabet = sum(1 << (ord(c) - ord('a')) for c in allowed)
+#     return sum(all((alphabet & (1 << (ord(c) - ord('a'))) != 0) for c in word) for word in words)
