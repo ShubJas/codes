@@ -1,15 +1,46 @@
+# Greedy
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        
         n = len(nums)
-        dp = [float('inf')] * n
-        dp[n-1] = 0
+        jumps = l = r = 0
+        while r < n-1:
+            jumps += 1
+            farthest = 0
+            for i in range(l,r+1):
+                farthest = max(farthest,i + nums[i])
+            
+            if farthest >= n -1:
+                return jumps 
+            
+            l = r + 1
+            r = farthest
+            
+        return 0
+    
 
-        for i in range(n-2,-1,-1):
-            for j in range(i + 1,min(i+nums[i]+1,n)):
-                dp[i]  = min(dp[i] ,1 + dp[j])
+            
+
+
+
+
+
+
+
+
+
+# # #  Dp solution
+# class Solution:
+#     def jump(self, nums: List[int]) -> int:
         
-        return dp[0]
+#         n = len(nums)
+#         dp = [float('inf')] * n
+#         dp[n-1] = 0
+
+#         for i in range(n-2,-1,-1):
+#             for j in range(i + 1,min(i+nums[i]+1,n)):
+#                 dp[i]  = min(dp[i] ,1 + dp[j])
+        
+#         return dp[0]
     
 # class Solution:
 #     def jump(self, nums: List[int]) -> int:
