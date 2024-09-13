@@ -1,3 +1,4 @@
+#  Intuition - calc prefix ( if start from ith, xor i-1)
 class Solution:
     def xorQueries(self, arr: List[int], queries: List[List[int]]) -> List[int]:
 
