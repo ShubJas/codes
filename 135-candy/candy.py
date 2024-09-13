@@ -1,4 +1,5 @@
-# Optimized approach (increasing slope)
+#  Intuition - start from left follow rules considering only left, then do the same for right
+# Optimized approach (increasing slope) , O(N) , 0(1)
 class Solution:
     def candy(self, ratings: List[int]) -> int:
 
@@ -34,7 +35,6 @@ class Solution:
         return S
 
 
-#  Intuition - start from left follow rules considering only left, then do the same for right
 # #  O(N) TC , 0(2N) SC
 # class Solution:
 #     def candy(self, ratings: List[int]) -> int:
