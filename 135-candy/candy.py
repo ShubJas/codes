@@ -2,7 +2,7 @@
 class Solution:
     def candy(self, ratings: List[int]) -> int:
 
-        S = 1
+        S = 1  # Candy to first child, starting from the second child
         n  = len(ratings)
         i  = 1
         while i<n:
@@ -15,12 +15,14 @@ class Solution:
                 top = 1
 
                 while i<n and ratings[i] > ratings[i-1]:
-                    top += 1
+                    # positioning imp
+                    top += 1 
                     S += top
                     i += 1
                 
                 bottom = 1
                 while i<n and ratings[i] < ratings[i-1]:
+                    # positioning imp
                     S += bottom
                     bottom += 1
                     i += 1
