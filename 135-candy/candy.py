@@ -1,3 +1,4 @@
+#  Intuition - start from left follow rules considering only left, then do the same for right
 class Solution:
     def candy(self, ratings: List[int]) -> int:
         
@@ -27,3 +28,6 @@ class Solution:
 
         # print([max(l,r) for l,r in zip(left,right)])
         return sum([max(l,r) for l,r in zip(left,right)])
+
+
+
