@@ -14,14 +14,14 @@ class Solution:
             else:
                 left.append(1)
         S = 0
-        right = curr = 1
+        curr = 1
         for i in range(n-2,-1,-1):
             if ratings[i] > ratings[i+1]:
-                curr = right + 1
-                right = curr
+                curr = curr + 1
+                # right = curr
             else:
                 curr = 1
-                right = 1
+                # right = 1
             
             S += max(left[i],curr) 
 
