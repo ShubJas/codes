@@ -23,6 +23,7 @@ class Solution:
             s2Count[index] += 1
             if s1Count[index] == s2Count[index]:
                 matches += 1
+                # Case when freq already unmatched ( so no need do dec)
             elif s1Count[index] + 1 == s2Count[index]:
                 matches -= 1
             
