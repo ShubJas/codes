@@ -6,9 +6,7 @@ class Solution:
 
 
         for i in range(0,n,2):
-            if s[i] == s[i+1]:
-                continue
-            elif s[i] != s[i+1]:
+            if s[i] != s[i+1]:
                 count+=1
         
         return count
