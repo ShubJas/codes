@@ -17,7 +17,7 @@ class Solution:
                     nums[p], nums[i] = nums[i], nums[p]
                     p+=1
             
-            nums[p],nums[r] = nums[r],nums[p]
+            nums[p],nums[r] = pivot,nums[p]
 
             if k < p:
                 return quickS(l,p-1)
@@ -27,6 +27,9 @@ class Solution:
                 return nums[p]
             
         return quickS(0,n-1)
+
+
+
 
        
 
